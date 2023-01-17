@@ -95,8 +95,9 @@ Other operations are very similar with those in C/C++.
 
 ### Slice
 
-1. Slice itself does not store the data. It just like reference of variable-length array in C/C++.Changing a value in a slice will change the data it 'points' the array, so other slices 'point' the array(eg, copy) will also change. 
-2. Declaration 
+1. Slice itself does not store the data. It just like reference of variable-length array in C/C++.Changing a value in a slice will change the data it 'points' the array, so other slices 'point' the array(eg, copy) will also change.
+2. Declaration
+
 ```
 // part of array
 a := [5]int{1, 2, 3, 4, 5}
@@ -108,11 +109,15 @@ s := make([]string, 3)
 // [](type) without a number in []
 good := []string{"g", "o", "o", "d"}
 ```
+
 3. append operation needs to be assigned to the original slice.
+
 ```
 s = append(s, "good")
 ```
+
 4. Initialization
+
 ```
 board := [][]int{
 	[]int{1, 0, 1},
@@ -120,6 +125,48 @@ board := [][]int{
 	[]int{1, 1, 0},
 }
 ```
+
+### Map
+
+1. Declaration
+
+```
+m := make(map[key]value)
+```
+
+2. Initialization
+
+```
+var m = map[string]int{
+	"four": 4,
+	"five": 5,
+}
+```
+
+3. CRUD
+
+```
+// create & update
+m[key] = value
+
+// read : ok == true if (key, value) in m else false
+value, ok := m[key]
+
+// delete
+delete(m, key)
+```
+
+4. Iteration
+
+```
+for k, v := range m {
+	fmt.Println(k, v)
+}
+```
+
+The storage location of the data in the map is random, so the result obtained by traversing the map is not fixed.
+
+
 
 ## Acknowledgements
 
