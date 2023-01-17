@@ -94,4 +94,30 @@ Other operations are very similar with those in C/C++.
 
 ### Slice
 
-Just like variable-length array in C/C++.
+1. Slice itself does not store the data. It just like reference of variable-length array in C/C++.Changing a value in a slice will change the data it 'points' the array, so other slices 'point' the array(eg, copy) will also change. 
+2. Declaration 
+```
+// part of array
+a := [5]int{1, 2, 3, 4, 5}
+var b []int = a[2:4]
+// use make
+s := make([]string, 3)
+// [](type) without a number in []
+good := []string{"g", "o", "o", "d"}
+```
+3. append operation needs to be assigned to the original array.
+```
+s = append(s, "good")
+```
+4. Initialization
+```
+board := [][]int{
+	[]int{1, 0, 1},
+	[]int{0, 1, 1},
+	[]int{1, 1, 0},
+}
+```
+
+## Acknowledgements
+
+Many thanks to Kechun Wang from ByteDance for his help.
