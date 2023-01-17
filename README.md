@@ -17,7 +17,8 @@ https://go.dev/tour/welcome/1
 #### If structure
 
 1. bool expression does not need `()`, but content needs `{}`
-2. Variable can be declared just behind ```if```.
+2. Variable can be declared just behind `if`.
+
 ```
 if v := math.Pow(x,y); v < limit {
     return v
@@ -29,23 +30,21 @@ if v := math.Pow(x,y); v < limit {
 1. switch - case is essentially a sequence of if - else statements, that is, case can be used without constants. `break` is not needed.
 
 ```
-func main() {
-    fmt.Println("When's Saturday?")
-    today := time.Now().Weekday()
-    switch time.Saturday {
-    case today + 0:
-        fmt.Println("Today.")
-    case today + 1:
-        fmt.Println("Tomorrow.")
-    case today + 2:
-        fmt.Println("In two days.")
-    case today + 3:
-        fmt.Println("In three days.")
-    case today + 4:
-        fmt.Println("In four days.")
-    default:
-        fmt.Println("Too far away.")
-    }
+fmt.Println("When's Saturday?")
+today := time.Now().Weekday()
+switch time.Saturday {
+case today + 0:
+    fmt.Println("Today.")
+case today + 1:
+    fmt.Println("Tomorrow.")
+case today + 2:
+    fmt.Println("In two days.")
+case today + 3:
+    fmt.Println("In three days.")
+case today + 4:
+    fmt.Println("In four days.")
+default:
+    fmt.Println("Too far away.")
 }
 ```
 
@@ -79,3 +78,15 @@ for i <= 3 {
 	i = i + 1
 }
 ```
+
+### Array
+Initialization
+```
+// without initialization
+var a [5]int
+// with initialization
+b := [5]int{1, 2, 3, 4, 5}
+```
+### Slice 
+Just like variable-length array in C/C++. 
+
