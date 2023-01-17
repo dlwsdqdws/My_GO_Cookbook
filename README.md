@@ -154,7 +154,7 @@ delete(m, key)
 
 ### Range
 
-1. Iterate a/an slice/array
+1. Iterate a slice
 
 ```
 nums := []int{2, 3, 4}
@@ -200,10 +200,9 @@ func function_name(variable variable_type) return_type {
 A function can return multiple values. Usually, we will return a boolean value `error` alone with return values.
 
 ```
-
 func exist(m map[string]int, k string) (v int, err bool) {
-v, err = m[k]
-return v, err
+    v, err = m[k]
+    return v, err
 }
 
 ```
@@ -212,7 +211,6 @@ return v, err
    <br>Pointers are needed to edit parameters of the function
 
 ```
-
 func increase(a int) {
     a += 1
 }
