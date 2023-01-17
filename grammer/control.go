@@ -18,10 +18,10 @@ func main() {
 	switch {
 	case t.Hour() < 12:
 		fmt.Println("morning")
-	case t.Hour() == 12:
-		fmt.Println("noon")
-	default:
+	case t.Hour() < 18:
 		fmt.Println("afternoon")
+	default:
+		fmt.Println("evening")
 	}
 
 	for j := 0; j < 10; j++ {
