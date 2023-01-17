@@ -208,16 +208,16 @@ return v, err
 ```
 
 2. pass by reference
-   Pointers are needed to edit parameters of the function
+<br>Pointers are needed to edit parameters of the function
 
 ```
 
 func increase(a int) {
-a += 1
+    a += 1
 }
 
 func increase2(a *int) {
-*a += 1
+    *a += 1
 }
 
 num := 1
