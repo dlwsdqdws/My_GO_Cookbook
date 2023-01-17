@@ -1,5 +1,22 @@
 # My GO Cookbook
 
+- [My GO Cookbook](#my-go-cookbook)
+  - [Basic Grammer](#basic-grammer)
+    - [Variable](#variable)
+    - [Control Structures](#control-structures)
+      - [If structure](#if-structure)
+      - [Switch Structure](#switch-structure)
+      - [For Structure](#for-structure)
+    - [Array](#array)
+    - [Slice](#slice)
+    - [Map](#map)
+    - [Struct](#struct)
+    - [Iteration](#iteration)
+    - [Function](#function)
+  - [References and Useful Links](#references-and-useful-links)
+  - [Acknowledgements](#acknowledgements)
+
+
 ## Basic Grammer
 
 ### Variable
@@ -182,7 +199,7 @@ user4.id = 2     // name : empty, id : 2
 
 ### Iteration
 
-1. Iterate a slice
+1. transverse a slice
 
 ```
 nums := []int{2, 3, 4}
@@ -193,7 +210,7 @@ for index, value := range nums {
 
 The order of output element traversed is determined by its index.
 
-2. Iterate a map
+2. transverse a map
 
 ```
 // iterate hole map
@@ -214,15 +231,14 @@ for _, v := range m {
 
 The storage location of the data in the map is random, so a map can NOT be expected to return results in some desired order when traversed.
 
-3. Iterate a struct
+3. transverse a struct
 ```
-// Firstly, sse reflect.ValueOf() to get the reflection instance 
+// Firstly, use reflect.ValueOf() to get the reflection instance 
 value := reflect.ValueOf(user3)
 
-// Traverse through NumField
+// Secondly, traverse through NumField
 for i := 0; i < value.NumField(); i++ {
-
-    fmt.Println(i, value.Field(i))  // Obtain the field
+    fmt.Println(i, value.Field(i))  // Thirdly, obtain the field
 }
 ```
 

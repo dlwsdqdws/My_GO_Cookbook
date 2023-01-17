@@ -10,6 +10,10 @@ type user struct {
 	id   int
 }
 
+func (u user) checkId(id int) bool {
+	return u.id == id
+}
+
 func main() {
 	var user1 = user{}
 	fmt.Println(user1)
