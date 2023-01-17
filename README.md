@@ -16,7 +16,13 @@ https://go.dev/tour/welcome/1
 
 #### If structure
 
-bool expression does not need `()`, but content needs `{}`
+1. bool expression does not need `()`, but content needs `{}`
+2. Variable can be declared just behind ```if```.
+```
+if v := math.Pow(x,y); v < limit {
+    return v
+}
+```
 
 #### Switch Structure
 
@@ -43,11 +49,10 @@ func main() {
 }
 ```
 
-2. Can be used to beautify an if - else sequence
+2. Can be used to beautify an if - else sequence. Variable can be declared just behind switch.
 
 ```
-t := time.Now()
-switch {
+switch t := time.Now() {
 case t.Hour() < 12:
 	fmt.Println("morning")
 case t.Hour() < 18:
