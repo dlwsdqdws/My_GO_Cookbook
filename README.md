@@ -152,21 +152,42 @@ value, ok := m[key]
 delete(m, key)
 ```
 
-4. Iteration
+### Range
+
+1. Iterate a/an slice/array
 
 ```
-for k, v := range m {
-	fmt.Println(k, v)
+nums := []int{2, 3, 4}
+for index, value := range nums {
+	fmt.Println(index, value)
 }
 ```
 
-The storage location of the data in the map is random, so the result obtained by traversing the map is not fixed.
+2. Iterate a map
+
+```
+// iterate hole map
+for k, v := range m {
+	fmt.Println(k, v)
+}
+
+// iterate only keys
+for k := range m {
+	fmt.Println("key", k)
+}
+
+// iterate only values
+for _, v := range m {
+	fmt.Println("value", v)
+}
+```
+
+The storage location of the data in the map is random, so a map cannot be expected to return results in some desired order when traversed.
 
 ## Useful Links
 
 [A Tour of Go](https://go.dev/tour/welcome/1)
 <br>[Effective Go](https://go.dev/doc/effective_go#for)
-
 
 ## Acknowledgements
 
