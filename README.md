@@ -189,6 +189,7 @@ The storage location of the data in the map is random, so a map can NOT be expec
 ### Function
 
 1. pass by value
+   Function in GO is pass by value by default
 
 ```
 func function_name(variable variable_type) return_type {
@@ -208,7 +209,7 @@ return v, err
 ```
 
 2. pass by reference
-<br>Pointers are needed to edit parameters of the function
+   <br>Pointers are needed to edit parameters of the function
 
 ```
 
@@ -221,13 +222,15 @@ func increase2(a *int) {
 }
 
 num := 1
-increase(num)
+increase(num)    // pass by value
 fmt.Println(num) // 1
 
-increase2(&num)
+increase2(&num)  // pass by reference
 fmt.Println(num) // 2
 
 ```
+
+### 
 
 ## Useful Links
 
