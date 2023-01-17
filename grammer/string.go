@@ -29,4 +29,7 @@ func main() {
 	fmt.Printf("%v\n", u)
 	fmt.Printf("%+v\n", u)
 	fmt.Printf("%#v\n", u)
+
+	f := 3.141592653
+	fmt.Printf("%.2f\n", f)
 }

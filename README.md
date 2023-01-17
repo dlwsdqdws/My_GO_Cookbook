@@ -332,7 +332,7 @@ if err == nil {
 1. format
 
 |  format   | meaning  |
-|  -------  | -------  |
+|  :------:  | :-----:  |
 |     %v    | return native value |
 | %+v  | Expand struct's names and values |
 |  %#v  | value in syntax format  |
