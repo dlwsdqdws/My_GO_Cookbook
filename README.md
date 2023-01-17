@@ -13,6 +13,8 @@
     - [Struct](#struct)
     - [Iteration](#iteration)
     - [Function](#function)
+    - [Errors](#errors)
+    - [String Handling](#string-handling)
   - [References and Useful Links](#references-and-useful-links)
   - [Acknowledgements](#acknowledgements)
 
@@ -203,13 +205,14 @@ func (u user) checkId(id int) bool {
 }
 ```
 
-It can be written as a function. 
+It can be written as a function.
 
 ```
 func checkIdFunc(u *user, id int) bool {
 	return u.id == id
 }
 ```
+
 And just like function, method can also pass by reference.
 
 ### Iteration
@@ -269,7 +272,7 @@ func function_name(variable variable_type) return_type {
 }
 ```
 
-A function can return multiple values. Usually, we will return a boolean value `error` alone with return values.
+A function can return multiple values.
 
 ```
 func exist(m map[string]int, k string) (v int, err bool) {
@@ -299,6 +302,31 @@ increase2(&num)  // pass by reference
 fmt.Println(num) // 2
 
 ```
+
+### Errors
+
+Usually, we will return a boolean value `error` alone with return values. `nil` for no error. <br>For example, when searching for an element in an array, the return value should contain the found element and `error`. When the element is found, `error` should be `nil` otherwise it should remind the operator of an error.
+
+```
+func search(users []user, name string) (u *user, err error) {
+	for _, u := range users {
+		if u.name == name {
+			return &u, nil
+		}
+	}
+	return nil, errors.New("No such user")
+}
+```
+
+When calling a function, we should first check whether the returned `error` reports an exception.
+
+```
+if err == nil {
+	fmt.Println(u.id)
+}
+```
+
+### String Handling
 
 ## References and Useful Links
 
