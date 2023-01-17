@@ -352,13 +352,25 @@ if err == nil {
 |  IndexFunc | Find index of a character or substring in a string |
 |  ToLower/ToUpper | Case conversion |
 
-For more functions like io operations can refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
+For more functions like io operations, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
 
 
 ### JSON
    
 
 ### Time
+Time is a kind of data type.
+
+|  function   | meaning  |
+|  :------:  | :-----:  |
+|     Now    | Current time |
+| Date  | Create a Time |
+|  Sub  | Time difference  |
+|  Parse  | Parse a time string to a Time  |
+|  Unix | Convert to unix timestamp |
+|  Round | Get the Time on the hour/minute/... |
+
+For Timer functions, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter04/04.4.html
 
 ## Useful Tools
 
