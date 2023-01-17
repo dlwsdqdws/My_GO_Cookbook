@@ -1,9 +1,5 @@
 # My GO Guidebook
 
-## A Tour of Go
-
-https://go.dev/tour/welcome/1
-
 ## Basic Grammer
 
 ### Variable
@@ -166,6 +162,10 @@ for k, v := range m {
 
 The storage location of the data in the map is random, so the result obtained by traversing the map is not fixed.
 
+## Useful Links
+
+A Tour of Go[https://go.dev/tour/welcome/1]
+Effective Go[https://go.dev/doc/effective_go#for]
 
 
 ## Acknowledgements
