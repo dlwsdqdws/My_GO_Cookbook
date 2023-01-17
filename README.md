@@ -25,7 +25,8 @@
       - [Strconv](#strconv)
     - [JSON](#json)
     - [Time](#time)
-    - [Env](#env)
+    - [Processes](#processes)
+  - [Parallel Programming](#parallel-programming)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -392,7 +393,10 @@ Time is a kind of data type.
 For Timer functions, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter04/04.4.html
 
 
-### Env
+### Processes
+
+## Parallel Programming
+
 
 ## Useful Tools
 
@@ -401,4 +405,4 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 
 ## Acknowledgements
 
-Many thanks to Kechun Wang from ByteDance for his help.
+Many thanks to Kechun Wang, Zheng Zhao from ByteDance for his help.
