@@ -163,6 +163,8 @@ for index, value := range nums {
 }
 ```
 
+The order of output element traversed is determined by its index.
+
 2. Iterate a map
 
 ```
@@ -182,7 +184,44 @@ for _, v := range m {
 }
 ```
 
-The storage location of the data in the map is random, so a map cannot be expected to return results in some desired order when traversed.
+The storage location of the data in the map is random, so a map can NOT be expected to return results in some desired order when traversed.
+
+### Function
+
+1. pass by value
+
+````
+func function_name(variable variable_type) return_type {
+    return return_value
+}
+A function can return multiple values. Usually, we will return a boolean value ```error``` alone with return values.
+````
+
+func exist(m map[string]int, k string) (v int, err bool) {
+v, err = m[k]
+return v, err
+}
+
+```
+2. pass by reference
+Pointers are needed to edit parameters of the function
+```
+func increase(a int) {
+	a += 1
+}
+
+func increase2(a *int) {
+	*a += 1
+}
+
+num := 1
+increase(num)
+fmt.Println(num)   // 1
+
+increase2(&num)
+fmt.Println(num)   // 2
+```
+
 
 ## Useful Links
 
@@ -192,3 +231,4 @@ The storage location of the data in the map is random, so a map cannot be expect
 ## Acknowledgements
 
 Many thanks to Kechun Wang from ByteDance for his help.
+```
