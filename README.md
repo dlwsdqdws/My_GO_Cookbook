@@ -330,11 +330,14 @@ if err == nil {
 
 ### String Handling
 1. format
-   
 |  format   | meaning  |
 |  -------  | -------  |
 |     %v    | return native value |
-| 单元格  | 单元格 |
+| %+v  | Expand struct's names and values |
+|  %#v  | value in syntax format  |
+|  %b  | binary value  |
+|  %f | float number |
+
 
 ### JSON
 
