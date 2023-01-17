@@ -330,6 +330,7 @@ if err == nil {
 
 ### String Handling
 1. format
+
 |  format   | meaning  |
 |  -------  | -------  |
 |     %v    | return native value |
