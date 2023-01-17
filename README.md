@@ -1,4 +1,4 @@
-# My GO Guidebook
+# My GO Cookbook
 
 ## Basic Grammer
 
@@ -152,7 +152,28 @@ value, ok := m[key]
 delete(m, key)
 ```
 
-### Range
+### Struct
+
+1. Declaration
+
+```
+type user struct {
+	name string
+	id   int
+}
+```
+
+2. Initialization
+
+```
+var user1 = user{}   // name : empty, id : 0
+var user2 = user{name: "lulei"} // name : "lulei", id : 0
+var user3 = user{"lulei", 1}   // name : "lulei", id : 1
+var user4 = user{}
+user4.id = 2     // name : empty, id : 2
+```
+
+### Iteration
 
 1. Iterate a slice
 
@@ -228,12 +249,10 @@ fmt.Println(num) // 2
 
 ```
 
-### 
+## References and Useful Links
 
-## Useful Links
-
-[A Tour of Go](https://go.dev/tour/welcome/1)
-<br>[Effective Go](https://go.dev/doc/effective_go#for)
+[A Tour of Go](https://go.dev/tour/welcome)
+<br>[Effective Go](https://go.dev/doc/effective_go)
 
 ## Acknowledgements
 
