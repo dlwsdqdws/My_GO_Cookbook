@@ -14,10 +14,10 @@
     - [Iteration](#iteration)
     - [Function](#function)
     - [Errors](#errors)
-    - [String Handling](#string-handling)
+    - [String](#string)
     - [JSON](#json)
     - [Time](#time)
-  - [References and Useful Links](#references-and-useful-links)
+  - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
 ## Basic Grammer
@@ -328,23 +328,39 @@ if err == nil {
 }
 ```
 
-### String Handling
-1. format
+### String
+1. Format
 
 |  format   | meaning  |
 |  :------:  | :-----:  |
 |     %v    | return native value |
-| %+v  | Expand struct's names and values |
+| %+v  | expand struct's names and values |
 |  %#v  | value in syntax format  |
 |  %b  | binary value  |
 |  %f | float number |
+|  %.2f | float number with 2 decimal places |
+
+2. String Handling
+
+|  function   | meaning  |
+|  :------:  | :-----:  |
+|     Join    | Concatenate string arrays (or slices) |
+| Split  | Separate a string according to certain rules |
+|  Count  | Counts the number of non-overlapping occurrences of a substring in a string  |
+|  Fields  | Separate strings with one or more consecutive spaces  |
+|  HasPrefix/HasSuffix | Check if a string has a certain prefix or suffix |
+|  IndexFunc | Find index of a character or substring in a string |
+|  ToLower/ToUpper | Case conversion |
+
+For more functions like io operations can refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
 
 
 ### JSON
+   
 
 ### Time
 
-## References and Useful Links
+## Useful Tools
 
 1. [A Tour of Go](https://go.dev/tour/welcome)
 2. [Effective Go](https://go.dev/doc/effective_go)
