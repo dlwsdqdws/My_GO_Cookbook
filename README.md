@@ -86,6 +86,7 @@ Initialization
 ```
 // without initialization
 var a [5]int
+
 // with initialization
 b := [5]int{1, 2, 3, 4, 5}
 ```
@@ -100,12 +101,14 @@ Other operations are very similar with those in C/C++.
 // part of array
 a := [5]int{1, 2, 3, 4, 5}
 var b []int = a[2:4]
+
 // use make
 s := make([]string, 3)
+
 // [](type) without a number in []
 good := []string{"g", "o", "o", "d"}
 ```
-3. append operation needs to be assigned to the original array.
+3. append operation needs to be assigned to the original slice.
 ```
 s = append(s, "good")
 ```
