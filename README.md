@@ -16,7 +16,6 @@
   - [References and Useful Links](#references-and-useful-links)
   - [Acknowledgements](#acknowledgements)
 
-
 ## Basic Grammer
 
 ### Variable
@@ -94,7 +93,7 @@ for i <= 3 {
 
 ### Array
 
-Declaration
+1. Declaration
 
 ```
 // without initialization
@@ -189,13 +188,29 @@ var user3 = user{"lulei", 1}   // name : "lulei", id : 1
 ```
 
 3. Access Member
-We can access struct's member by using ```.```
+   We can access struct's member by using `.`
+
 ```
 var user4 = user{}
 user4.id = 2     // name : empty, id : 2
 ```
 
 4. Method
+
+```
+func (u user) checkId(id int) bool {
+	return u.id == id
+}
+```
+
+It can be written as a function. 
+
+```
+func checkIdFunc(u *user, id int) bool {
+	return u.id == id
+}
+```
+And just like function, method can also pass by reference.
 
 ### Iteration
 
@@ -232,8 +247,9 @@ for _, v := range m {
 The storage location of the data in the map is random, so a map can NOT be expected to return results in some desired order when traversed.
 
 3. transverse a struct
+
 ```
-// Firstly, use reflect.ValueOf() to get the reflection instance 
+// Firstly, use reflect.ValueOf() to get the reflection instance
 value := reflect.ValueOf(user3)
 
 // Secondly, traverse through NumField
@@ -286,8 +302,8 @@ fmt.Println(num) // 2
 
 ## References and Useful Links
 
-[A Tour of Go](https://go.dev/tour/welcome)
-<br>[Effective Go](https://go.dev/doc/effective_go)
+1. [A Tour of Go](https://go.dev/tour/welcome)
+2. [Effective Go](https://go.dev/doc/effective_go)
 
 ## Acknowledgements
 

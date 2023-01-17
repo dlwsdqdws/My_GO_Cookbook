@@ -14,6 +14,14 @@ func (u user) checkId(id int) bool {
 	return u.id == id
 }
 
+func checkIdFunc(u *user, id int) bool {
+	return u.id == id
+}
+
+func (u *user) setId(id int) {
+	u.id = id
+}
+
 func main() {
 	var user1 = user{}
 	fmt.Println(user1)
@@ -37,4 +45,10 @@ func main() {
 		fmt.Println(i, value.Field(i))
 	}
 
+	fmt.Println(checkIdFunc(&user1, 0))
+
+	fmt.Println(user1.checkId(1))
+	user1.setId(1)
+	fmt.Println(user1.id)
+	fmt.Println(user1.checkId(1))
 }
