@@ -221,9 +221,8 @@ value := reflect.ValueOf(user3)
 
 // Traverse through NumField
 for i := 0; i < value.NumField(); i++ {
-    
-    // Obtain the field
-fmt.Println(i, value.Field(i))
+
+    fmt.Println(i, value.Field(i))  // Obtain the field
 }
 ```
 
