@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 type user struct {
 	name string
@@ -20,4 +23,14 @@ func main() {
 	var user4 = user{}
 	user4.id = 2
 	fmt.Println(user4)
+
+	var user5 = &user{}
+	user5.name = "hahaha"
+	fmt.Println(*user5)
+
+	value := reflect.ValueOf(user3)
+	for i := 0; i < value.NumField(); i++ {
+		fmt.Println(i, value.Field(i))
+	}
+
 }

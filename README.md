@@ -169,9 +169,16 @@ type user struct {
 var user1 = user{}   // name : empty, id : 0
 var user2 = user{name: "lulei"} // name : "lulei", id : 0
 var user3 = user{"lulei", 1}   // name : "lulei", id : 1
+```
+
+3. Access Member
+We can access struct's member by using ```.```
+```
 var user4 = user{}
 user4.id = 2     // name : empty, id : 2
 ```
+
+4. Method
 
 ### Iteration
 
@@ -206,6 +213,19 @@ for _, v := range m {
 ```
 
 The storage location of the data in the map is random, so a map can NOT be expected to return results in some desired order when traversed.
+
+3. Iterate a struct
+```
+// Firstly, sse reflect.ValueOf() to get the reflection instance 
+value := reflect.ValueOf(user3)
+
+// Traverse through NumField
+for i := 0; i < value.NumField(); i++ {
+    
+    // Obtain the field
+	fmt.Println(i, value.Field(i))
+}
+```
 
 ### Function
 
