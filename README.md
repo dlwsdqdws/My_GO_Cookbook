@@ -80,13 +80,18 @@ for i <= 3 {
 ```
 
 ### Array
+
 Initialization
+
 ```
 // without initialization
 var a [5]int
 // with initialization
 b := [5]int{1, 2, 3, 4, 5}
 ```
-### Slice 
-Just like variable-length array in C/C++. 
 
+Other operations are very similar with those in C/C++.
+
+### Slice
+
+Just like variable-length array in C/C++.
