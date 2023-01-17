@@ -12,7 +12,12 @@
     - [Map](#map)
     - [Struct](#struct)
     - [Iteration](#iteration)
+      - [transverse a slice](#transverse-a-slice)
+      - [transverse a map](#transverse-a-map)
+      - [transverse a struct](#transverse-a-struct)
     - [Function](#function)
+      - [pass by value](#pass-by-value)
+      - [pass by reference](#pass-by-reference)
     - [Errors](#errors)
     - [String](#string)
       - [Format](#format)
@@ -20,6 +25,7 @@
       - [Strconv](#strconv)
     - [JSON](#json)
     - [Time](#time)
+    - [Env](#env)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -222,7 +228,7 @@ And just like function, method can also pass by reference.
 
 ### Iteration
 
-1. transverse a slice
+#### transverse a slice
 
 ```
 nums := []int{2, 3, 4}
@@ -233,7 +239,7 @@ for index, value := range nums {
 
 The order of output element traversed is determined by its index.
 
-2. transverse a map
+#### transverse a map
 
 ```
 // iterate hole map
@@ -254,7 +260,7 @@ for _, v := range m {
 
 The storage location of the data in the map is random, so a map can NOT be expected to return results in some desired order when traversed.
 
-3. transverse a struct
+#### transverse a struct
 
 ```
 // Firstly, use reflect.ValueOf() to get the reflection instance
@@ -268,7 +274,7 @@ for i := 0; i < value.NumField(); i++ {
 
 ### Function
 
-1. pass by value
+#### pass by value
    Function in GO is pass by value by default
 
 ```
@@ -287,7 +293,7 @@ func exist(m map[string]int, k string) (v int, err bool) {
 
 ```
 
-2. pass by reference
+#### pass by reference
    <br>Pointers are needed to edit parameters of the function
 
 ```
@@ -385,6 +391,8 @@ Time is a kind of data type.
 
 For Timer functions, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter04/04.4.html
 
+
+### Env
 
 ## Useful Tools
 
