@@ -21,8 +21,10 @@ func search(users []user, name string) (u *user, err error) {
 }
 
 func main() {
-	u, err := search([]user{{"lulei", 1}, {"wong", 2}}, "lulei")
+	u, err := search([]user{{"lulei", 1}, {"wong", 2}}, "leilu")
 	if err == nil {
 		fmt.Println(u.id)
+	} else {
+		fmt.Println(err)
 	}
 }

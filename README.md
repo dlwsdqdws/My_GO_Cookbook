@@ -15,6 +15,8 @@
     - [Function](#function)
     - [Errors](#errors)
     - [String Handling](#string-handling)
+    - [JSON](#json)
+    - [Time](#time)
   - [References and Useful Links](#references-and-useful-links)
   - [Acknowledgements](#acknowledgements)
 
@@ -327,6 +329,16 @@ if err == nil {
 ```
 
 ### String Handling
+1. format
+   
+|  format   | meaning  |
+|  -------  | -------  |
+|     %v    | return native value |
+| 单元格  | 单元格 |
+
+### JSON
+
+### Time
 
 ## References and Useful Links
 
