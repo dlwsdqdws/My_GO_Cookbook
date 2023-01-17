@@ -81,7 +81,7 @@ for i <= 3 {
 
 ### Array
 
-Initialization
+Declaration
 
 ```
 // without initialization
