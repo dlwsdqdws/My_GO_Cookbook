@@ -164,8 +164,8 @@ The storage location of the data in the map is random, so the result obtained by
 
 ## Useful Links
 
-A Tour of Go[https://go.dev/tour/welcome/1]
-Effective Go[https://go.dev/doc/effective_go#for]
+[A Tour of Go](https://go.dev/tour/welcome/1)
+[Effective Go](https://go.dev/doc/effective_go#for)
 
 
 ## Acknowledgements
