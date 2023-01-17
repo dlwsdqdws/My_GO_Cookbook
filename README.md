@@ -15,6 +15,9 @@
     - [Function](#function)
     - [Errors](#errors)
     - [String](#string)
+      - [Format](#format)
+      - [String Handling](#string-handling)
+      - [Strconv](#strconv)
     - [JSON](#json)
     - [Time](#time)
   - [Useful Tools](#useful-tools)
@@ -329,7 +332,7 @@ if err == nil {
 ```
 
 ### String
-1. Format
+#### Format
 
 |  format   | meaning  |
 |  :------:  | :-----:  |
@@ -340,7 +343,7 @@ if err == nil {
 |  %f | float number |
 |  %.2f | float number with 2 decimal places |
 
-2. String Handling
+#### String Handling
 
 |  function   | meaning  |
 |  :------:  | :-----:  |
@@ -354,6 +357,16 @@ if err == nil {
 
 For more functions like io operations, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
 
+#### Strconv
+Strconv can realize the conversion between string and numeric types
+
+|  function   | meaning  |
+|  :------:  | :-----:  |
+|     ParseInt    | Convert a string to a number, can set base and bitsize |
+| ParseBool  | Convert a string to a boolean |
+|  ParseFloat  | Cconvert a 'float' string to a float number |
+|  ParseUnit  | Similar to the ParseInt(), but does not accept +/- signs  |
+|  Atoi | Convert an integer of type string to type int |
 
 ### JSON
    
@@ -371,6 +384,7 @@ Time is a kind of data type.
 |  Round | Get the Time on the hour/minute/... |
 
 For Timer functions, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter04/04.4.html
+
 
 ## Useful Tools
 
