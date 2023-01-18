@@ -29,7 +29,7 @@
   - [Concurrent and Parallel](#concurrent-and-parallel)
     - [Goroutine](#goroutine)
     - [Channel](#channel)
-    - [Lock](#lock)
+    - [Safety](#safety)
       - [Mutex](#mutex)
       - [WaitGroup](#waitgroup)
   - [Useful Tools](#useful-tools)
@@ -411,7 +411,7 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 
 1. Differences between Goroutine and Threads
 
-- Goroutine : works on user mode, KB level in stack.
+- Goroutine : works on user mode, lightweight thread, KB level in stack.
 - Thread : works on kernel mode, MB level in stack.
 
 2. Use `go` start a new goroutine.
@@ -455,7 +455,7 @@ The channel should be closed after being used, otherwise it is easy to cause dea
 defer close(chan)
 ```
 
-### Lock
+### Safety
 
 Communication through sharing memory can lead to multiple goroutines accessing the same data at the same time, and thus we need a **Lock**.
 
@@ -472,7 +472,7 @@ lock.Unlock() // unlock
 
 #### WaitGroup
 
-WatiGroup can wait until all goroutines are executed and block the execution of the main thread until all goroutines are executed. WaitGroup has three methods:
+WaitGroup can help set 'sleep_time' accurately. WatiGroup can wait until all goroutines are executed and block the execution of the main thread until all goroutines are executed. WaitGroup has three methods:
 
 | method |                                      meaning                                       |
 | :----: | :--------------------------------------------------------------------------------: |
@@ -480,7 +480,7 @@ WatiGroup can wait until all goroutines are executed and block the execution of 
 | `Done` | Decrement the value of the counter, should be executed at the end of the goroutine |
 | `Wait` |                     block until all WaitGroup counts become 0                      |
 
-Note that the number set by `Add()` must be consistent with the number of waiting goroutines otherwise a deadlock will happen.
+Note that the number set by `Add()` must be consistent with the number of waiting goroutines otherwise a deadlock will happen. For more examples please refer to https://www.cnblogs.com/sunshineliulu/p/14779158.html.
 
 ## Useful Tools
 
@@ -489,4 +489,4 @@ Note that the number set by `Add()` must be consistent with the number of waitin
 
 ## Acknowledgements
 
-Many thanks to Kechun Wang, Zheng Zhao from ByteDance for their help.
+Many thanks to Kechun Wang, Zheng Zhao from ByteDance for their help. 
