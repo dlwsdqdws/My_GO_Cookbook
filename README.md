@@ -780,7 +780,18 @@ if _, err := os.Open("non-existing"); err != nil {
 }
 ```
 
-- `panic/recover` is not recommended unless it is really a huge problem. `recover` should be used in `defer` and takes effect only on the current goroutine. Note that `defer` is actually a stack.
+- `panic/recover` is not recommended unless it is really a huge problem. `recover` should be used in `defer` and takes effect only on the current goroutine.
+
+<br>Note that `defer` is actually a stack.
+
+```go
+func main(){
+    defer fmt.Printf("1")
+    defer fmt.Printf("2")
+    defer fmt.Printf("3")
+}
+// output : 321
+```
 
 ### Performance Optimization
 
