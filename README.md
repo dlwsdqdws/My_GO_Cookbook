@@ -30,10 +30,12 @@
   - [Concurrent and Parallel](#concurrent-and-parallel)
     - [Goroutine](#goroutine)
     - [Channel](#channel)
-    - [Safety](#safety)
+    - [Sync](#sync)
       - [Mutex](#mutex)
       - [WaitGroup](#waitgroup)
   - [Dependency Management](#dependency-management)
+    - [GO PATH](#go-path)
+    - [GO Vendor](#go-vendor)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -462,7 +464,7 @@ The channel should be closed after being used, otherwise it is easy to cause dea
 defer close(chan)
 ```
 
-### Safety
+### Sync
 
 Communication through sharing memory can lead to multiple goroutines accessing the same data at the same time, and thus we need a **Lock**.
 
@@ -491,6 +493,18 @@ Note that the number set by `Add()` must be consistent with the number of waitin
 
 
 ## Dependency Management
+
+### GO PATH
+
+- bin : compiled binaries
+- pkg : compiled intermediate products to speed up compilation
+- src : source code
+  
+Disadvantage : Unable to achieve Version Control.
+
+### GO Vendor
+
+
 
 ## Useful Tools
 
