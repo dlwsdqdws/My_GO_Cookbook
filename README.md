@@ -45,6 +45,7 @@
     - [Go Style](#go-style)
       - [Standard](#standard)
       - [Comment](#comment)
+      - [Code Format](#code-format)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -635,9 +636,11 @@ func BenchmarkRandomParallel(b *testing.B) {
 - Always add comments to the public symbols.
 
 ```go
-// A Builder is used to efficiently build a string using Write methods.
-// It minimizes memory copying. The zero value is ready to use.
-// Do not copy a non-zero Builder.
+/*
+  A Builder is used to efficiently build a string using Write methods.
+  It minimizes memory copying. The zero value is ready to use.
+  Do not copy a non-zero Builder.
+*/
 type Builder struct {
     addr *Builder // of receiver, to detect copies by value
     buf  []byte
@@ -645,6 +648,13 @@ type Builder struct {
 ```
 
 For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
+
+#### Code Format
+
+Two useful packages.
+
+- [gofmt](https://pkg.go.dev/cmd/gofmt)
+- [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
 
 ## Useful Tools
 
