@@ -26,7 +26,9 @@
     - [JSON](#json)
     - [Time](#time)
     - [Processes](#processes)
-  - [Parallel Programming](#parallel-programming)
+  - [Concurrent and Parallel](#concurrent-and-parallel)
+    - [Goroutine](#goroutine)
+    - [Channel](#channel)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -395,8 +397,11 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 
 ### Processes
 
-## Parallel Programming
+## Concurrent and Parallel
 
+### Goroutine
+
+### Channel
 
 ## Useful Tools
 
