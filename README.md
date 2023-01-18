@@ -9,7 +9,8 @@
       - [For Structure](#for-structure)
     - [Array](#array)
     - [Slice](#slice)
-    - [Map](#map)
+    - [Data Structure](#data-structure)
+      - [Map](#map)
     - [Struct](#struct)
     - [Iteration](#iteration)
       - [transverse a slice](#transverse-a-slice)
@@ -157,7 +158,9 @@ board := [][]int{
 }
 ```
 
-### Map
+### Data Structure
+
+#### Map
 
 1. Declaration
 
@@ -489,4 +492,4 @@ Note that the number set by `Add()` must be consistent with the number of waitin
 
 ## Acknowledgements
 
-Many thanks to Kechun Wang, Zheng Zhao from ByteDance for their help. 
+Many thanks to Kechun Wang, Zheng Zhao from ByteDance for their help.
