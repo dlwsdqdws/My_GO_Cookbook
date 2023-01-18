@@ -582,6 +582,31 @@ func TestProcessFirstLineWithMock(t *testing.T) {
 
 ### Benchmark
 
+- Very similar with unit test. It is to test the performance of the code and the consumption of CPU.
+- Start with `Benchmark` and using `gobench xxx_test.go` to run.
+
+```go
+// Serial
+func BenchmarkRandom(b *testing.B) {
+   InitServerIndex()
+   b.ResetTimer()
+   for i := 0; i < b.N; i++ {
+      Random(10)
+   }
+}
+
+// Parallel
+func BenchmarkRandomParallel(b *testing.B) {
+   InitServerIndex()
+   b.ResetTimer()
+   b.RunParallel(func(pb *testing.PB) {
+      for pb.Next() {
+         Random(10)
+      }
+   })
+}
+```
+
 ## Useful Tools
 
 1. [A Tour of Go](https://go.dev/tour/welcome)
