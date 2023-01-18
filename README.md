@@ -437,6 +437,16 @@ make(chan mem_type ,[buffer_size])
 - If buffer is NOT used, the channel is a synchronous channel. The sender will block until a receiver has received a value from the channel. The receiver blocks until there is a value to receive.
 - If buffer is used, the channel is a producer-consumer model. The sender will block until the sent value is sent into the buffer. If the buffer is full, the sender will block until a receiver receives a value. The receiver blocks until there is a value to receive.
 
+The operator `<-` is used to specify the direction of the channel to achieve sending or receiving. In particular, if no direction is specified, it is a bidirectional channel.
+
+```go
+// Send data to channel ch
+ch <- data
+
+// Receive data from channel ch and assign it to d
+d := <- ch
+```
+
 The channel should be closed after being used, otherwise it is easy to cause deadlock.
 
 ```go
