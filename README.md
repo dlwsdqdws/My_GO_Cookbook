@@ -47,7 +47,7 @@
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
-**WELLCOME TO EDIT**
+<cente>**WELLCOME TO EDIT**</cente>
 
 ## Basic Grammer
 
@@ -625,7 +625,7 @@ func BenchmarkRandomParallel(b *testing.B) {
 
 - Simplicity : eliminate unnecessary expressions
 - Readability : easy to understand
-- Friendly : easy to cooperate with teammates
+- Productivity : easy to cooperate with teammates
 
 ## Useful Tools
 
