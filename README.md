@@ -42,6 +42,8 @@
     - [Mock](#mock)
     - [Benchmark](#benchmark)
   - [Code Optimization](#code-optimization)
+    - [Go Style](#go-style)
+      - [Standard](#standard)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -51,12 +53,12 @@
 
 ### Variable
 
-1. `:=` and `const` can automatically infer the variable type, var is typically used for variables whose type is inconsistent with the initialization expression.
+1. `:=` and `const` can automatically infer the variable type, `var` is typically used for variables whose type is inconsistent with the initialization expression.
 
 ```go
 num := 1
-var a string
 const pi = 3.14
+var a string
 ```
 
 2. Scientific notation is supported.
@@ -616,6 +618,14 @@ func BenchmarkRandomParallel(b *testing.B) {
 ```
 
 ## Code Optimization
+
+### Go Style
+
+#### Standard
+
+- Simplicity : eliminate unnecessary expressions
+- Readability : easy to understand
+- Friendly : easy to cooperate with teammates
 
 ## Useful Tools
 
