@@ -51,6 +51,8 @@
         - [Function](#function-1)
         - [Package](#package)
       - [Code](#code)
+        - [Control Flow](#control-flow)
+        - [Error Handling](#error-handling)
     - [Performance Optimization](#performance-optimization)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
@@ -678,6 +680,10 @@ For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
 ```go
 package http
 
+// bad
+func ServeHTTP(I net.Listener, handler Handler) error
+
+// good
 func Serve(I net.Listener, handler Handler) error
 ```
 
@@ -693,6 +699,8 @@ func Serve(I net.Listener, handler Handler) error
 - Use abbreviations sparingly.
 
 #### Code
+
+##### Control Flow
 
 - Avoid nesting
 
@@ -738,6 +746,41 @@ func OneFunc() error {
     return nil
 }
 ```
+
+##### Error Handling
+
+- For simple errors that occur few times, use `errors.New()`.
+- To format errors can use `fmt.Errorf`.
+- For complicated errors, use Wrap and Unnwrap.
+
+```go
+list, _, err := c.GetBytes(cache.Subkey(a.actionID, "srcfiles"))
+if err != nil {
+    return fmt.Errorf("reading srcfiles list: %w", err)
+}
+```
+
+- Use `errors.Is` instead of `==` to determine whether an error is a specific error. Use `errors.As` can get the specific kind of error.
+
+```go
+data, err = lockedfile.Read(targ)
+if errors.Is(err, fs.ErrNotExist) {
+    return []byte{}, nil
+}else{
+    // do something
+}
+
+if _, err := os.Open("non-existing"); err != nil {
+    var pathError *fs.PathError
+    if errors.As(err, &pathError) {
+        fmt.Println("Failed at path:", pathError.Path)
+    } else {
+        // do something
+    }
+}
+```
+
+- `panic/recover` is not recommended unless it is a real huge problem. `recover` should be used in `defer` and takes effect only on the current goroutine. Note that `refer` is actually a stack.
 
 ### Performance Optimization
 
