@@ -278,7 +278,8 @@ for i := 0; i < value.NumField(); i++ {
 ### Function
 
 #### pass by value
-   Function in GO is pass by value by default
+
+Function in GO is pass by value by default
 
 ```go
 func function_name(variable variable_type) return_type {
@@ -297,7 +298,8 @@ func exist(m map[string]int, k string) (v int, err bool) {
 ```
 
 #### pass by reference
-   <br>Pointers are needed to edit parameters of the function
+
+<br>Pointers are needed to edit parameters of the function
 
 ```go
 func increase(a int) {
@@ -343,67 +345,75 @@ if err != nil {
 ```
 
 ### String
+
 #### Format
 
-|  format   | meaning  |
-|  :------:  | :-----:  |
-|     %v    | return native value |
-| %+v  | expand struct's names and values |
-|  %#v  | value in syntax format  |
-|  %b  | binary value  |
-|  %f | float number |
-|  %.2f | float number with 2 decimal places |
+| format |              meaning               |
+| :----: | :--------------------------------: |
+|   %v   |        return native value         |
+|  %+v   |  expand struct's names and values  |
+|  %#v   |       value in syntax format       |
+|   %b   |            binary value            |
+|   %f   |            float number            |
+|  %.2f  | float number with 2 decimal places |
 
 #### String Handling
 
-|  function   | meaning  |
-|  :------:  | :-----:  |
-|     Join    | Concatenate string arrays (or slices) |
-| Split  | Separate a string according to certain rules |
-|  Count  | Counts the number of non-overlapping occurrences of a substring in a string  |
-|  Fields  | Separate strings with one or more consecutive spaces  |
-|  HasPrefix/HasSuffix | Check if a string has a certain prefix or suffix |
-|  IndexFunc | Find index of a character or substring in a string |
-|  ToLower/ToUpper | Case conversion |
+|      function       |                                   meaning                                   |
+| :-----------------: | :-------------------------------------------------------------------------: |
+|        Join         |                    Concatenate string arrays (or slices)                    |
+|        Split        |                Separate a string according to certain rules                 |
+|        Count        | Counts the number of non-overlapping occurrences of a substring in a string |
+|       Fields        |            Separate strings with one or more consecutive spaces             |
+| HasPrefix/HasSuffix |              Check if a string has a certain prefix or suffix               |
+|      IndexFunc      |             Find index of a character or substring in a string              |
+|   ToLower/ToUpper   |                               Case conversion                               |
 
 For more functions like io operations, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
 
 #### Strconv
+
 Strconv can realize the conversion between string and numeric types
 
-|  function   | meaning  |
-|  :------:  | :-----:  |
-|     ParseInt    | Convert a string to a number, can set base and bitsize |
-| ParseBool  | Convert a string to a boolean |
-|  ParseFloat  | Cconvert a 'float' string to a float number |
-|  ParseUnit  | Similar to the ParseInt(), but does not accept +/- signs  |
-|  Atoi | Convert an integer of type string to type int |
+|  function  |                         meaning                          |
+| :--------: | :------------------------------------------------------: |
+|  ParseInt  |  Convert a string to a number, can set base and bitsize  |
+| ParseBool  |              Convert a string to a boolean               |
+| ParseFloat |       Cconvert a 'float' string to a float number        |
+| ParseUnit  | Similar to the ParseInt(), but does not accept +/- signs |
+|    Atoi    |      Convert an integer of type string to type int       |
 
 ### JSON
-   
 
 ### Time
+
 Time is a kind of data type.
 
-|  function   | meaning  |
-|  :------:  | :-----:  |
-|     Now    | Current time |
-| Date  | Create a Time |
-|  Sub  | Time difference  |
-|  Parse  | Parse a time string to a Time  |
-|  Unix | Convert to unix timestamp |
-|  Round | Get the Time on the hour/minute/... |
+| function |               meaning               |
+| :------: | :---------------------------------: |
+|   Now    |            Current time             |
+|   Date   |            Create a Time            |
+|   Sub    |           Time difference           |
+|  Parse   |    Parse a time string to a Time    |
+|   Unix   |      Convert to unix timestamp      |
+|  Round   | Get the Time on the hour/minute/... |
 
 For Timer functions, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter04/04.4.html
-
 
 ### Processes
 
 ## Concurrent and Parallel
 
 ### Goroutine
+
 1. Differences between Goroutine and Threads
 
+- Goroutine : works on user mode, KB level in stack. 
+- Thread : works on kernel mode, MB level in stack. 
+
+When a goroutine needs to be blocked, the system will move other goroutines waiting to run on this thread to other threads that can run programs, so other goroutines will not be stuck.
+
+1. Use `go func()` start a new goroutine. Function can be anonymous. 
 
 ### Channel
 
