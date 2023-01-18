@@ -47,7 +47,7 @@
 1. bool expression does not need `()`, but content needs `{}`
 2. Variable can be declared just behind `if`.
 
-```
+```go
 if v := math.Pow(x,y); v < limit {
     return v
 }
@@ -57,7 +57,7 @@ if v := math.Pow(x,y); v < limit {
 
 1. switch - case is essentially a sequence of if - else statements, that is, case can be used without constants. `break` is not needed.
 
-```
+```go
 fmt.Println("When's Saturday?")
 today := time.Now().Weekday()
 switch time.Saturday {
@@ -78,7 +78,7 @@ default:
 
 2. Can be used to beautify an if - else sequence. Variable can be declared just behind switch.
 
-```
+```go
 switch t := time.Now() {
 case t.Hour() < 12:
 	fmt.Println("morning")
@@ -93,13 +93,13 @@ default:
 
 1. Dead loop
 
-```
+```go
 for {	}
 ```
 
 2. Can be used as `while` loop in C/C++
 
-```
+```go
 i := 1
 for i <= 3 {
 	fmt.Println(i)
@@ -111,7 +111,7 @@ for i <= 3 {
 
 1. Declaration
 
-```
+```go
 // without initialization
 var a [5]int
 
@@ -126,7 +126,7 @@ Other operations are very similar with those in C/C++.
 1. Slice itself does not store the data. It just like reference of variable-length array in C/C++.Changing a value in a slice will change the data it 'points' the array, so other slices 'point' the array(eg, copy) will also change.
 2. Declaration
 
-```
+```go
 // part of array
 a := [5]int{1, 2, 3, 4, 5}
 var b []int = a[2:4]
@@ -146,7 +146,7 @@ s = append(s, "good")
 
 4. Initialization
 
-```
+```go
 board := [][]int{
 	[]int{1, 0, 1},
 	[]int{0, 1, 1},
@@ -158,13 +158,13 @@ board := [][]int{
 
 1. Declaration
 
-```
+```go
 m := make(map[key]value)
 ```
 
 2. Initialization
 
-```
+```go
 var m = map[string]int{
 	"four": 4,
 	"five": 5,
@@ -173,7 +173,7 @@ var m = map[string]int{
 
 3. CRUD
 
-```
+```go
 // create & update
 m[key] = value
 
@@ -188,7 +188,7 @@ delete(m, key)
 
 1. Declaration
 
-```
+```go
 type user struct {
 	name string
 	id   int
@@ -197,7 +197,7 @@ type user struct {
 
 2. Initialization
 
-```
+```go
 var user1 = user{}   // name : empty, id : 0
 var user2 = user{name: "lulei"} // name : "lulei", id : 0
 var user3 = user{"lulei", 1}   // name : "lulei", id : 1
@@ -206,14 +206,14 @@ var user3 = user{"lulei", 1}   // name : "lulei", id : 1
 3. Access Member
    We can access struct's member by using `.`
 
-```
+```go
 var user4 = user{}
 user4.id = 2     // name : empty, id : 2
 ```
 
 4. Method
 
-```
+```go
 func (u user) checkId(id int) bool {
 	return u.id == id
 }
@@ -221,7 +221,7 @@ func (u user) checkId(id int) bool {
 
 It can be written as a function.
 
-```
+```go
 func checkIdFunc(u *user, id int) bool {
 	return u.id == id
 }
@@ -233,7 +233,7 @@ And just like function, method can also pass by reference.
 
 #### transverse a slice
 
-```
+```go
 nums := []int{2, 3, 4}
 for index, value := range nums {
 	fmt.Println(index, value)
@@ -244,7 +244,7 @@ The order of output element traversed is determined by its index.
 
 #### transverse a map
 
-```
+```go
 // iterate hole map
 for k, v := range m {
 	fmt.Println(k, v)
@@ -265,7 +265,7 @@ The storage location of the data in the map is random, so a map can NOT be expec
 
 #### transverse a struct
 
-```
+```go
 // Firstly, use reflect.ValueOf() to get the reflection instance
 value := reflect.ValueOf(user3)
 
@@ -280,7 +280,7 @@ for i := 0; i < value.NumField(); i++ {
 #### pass by value
    Function in GO is pass by value by default
 
-```
+```go
 func function_name(variable variable_type) return_type {
     return return_value
 }
@@ -288,7 +288,7 @@ func function_name(variable variable_type) return_type {
 
 A function can return multiple values.
 
-```
+```go
 func exist(m map[string]int, k string) (v int, err bool) {
     v, err = m[k]
     return v, err
@@ -299,7 +299,7 @@ func exist(m map[string]int, k string) (v int, err bool) {
 #### pass by reference
    <br>Pointers are needed to edit parameters of the function
 
-```
+```go
 func increase(a int) {
     a += 1
 }
@@ -321,7 +321,7 @@ fmt.Println(num) // 2
 
 Usually, we will return a boolean value `error` alone with return values. `nil` for no error. <br>For example, when searching for an element in an array, the return value should contain the found element and `error`. When the element is found, `error` should be `nil` otherwise it should remind the operator of an error.
 
-```
+```go
 func search(users []user, name string) (u *user, err error) {
 	for _, u := range users {
 		if u.name == name {
@@ -334,7 +334,7 @@ func search(users []user, name string) (u *user, err error) {
 
 When calling a function, we should first check whether the returned `error` reports an exception.
 
-```
+```go
 if err == nil {
 	fmt.Println(u.id)
 }
@@ -400,6 +400,8 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 ## Concurrent and Parallel
 
 ### Goroutine
+1. Differences between Goroutine and Threads
+
 
 ### Channel
 
@@ -410,4 +412,4 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 
 ## Acknowledgements
 
-Many thanks to Kechun Wang, Zheng Zhao from ByteDance for his help.
+Many thanks to Kechun Wang, Zheng Zhao from ByteDance for their help.
