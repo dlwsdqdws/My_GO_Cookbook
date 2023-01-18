@@ -782,7 +782,7 @@ if _, err := os.Open("non-existing"); err != nil {
 
 - `panic/recover` is not recommended unless it is really a huge problem. `recover` should be used in `defer` and takes effect only on the current goroutine.
 
-<br>Note that `defer` is actually a stack.
+Note that `defer` is actually a stack.
 
 ```go
 func main(){
