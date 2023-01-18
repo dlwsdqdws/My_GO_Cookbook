@@ -41,6 +41,7 @@
     - [Unit Test](#unit-test)
     - [Mock](#mock)
     - [Benchmark](#benchmark)
+  - [Code Optimization](#code-optimization)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -607,6 +608,8 @@ func BenchmarkRandomParallel(b *testing.B) {
 }
 ```
 
+## Code Optimization
+
 ## Useful Tools
 
 1. [A Tour of Go](https://go.dev/tour/welcome)
@@ -614,4 +617,4 @@ func BenchmarkRandomParallel(b *testing.B) {
 
 ## Acknowledgements
 
-Many thanks to Kechun Wang, Zheng Zhao from ByteDance for their help.
+Many thanks to Kechun Wang, Zheng Zhao, Lei Zhang from ByteDance for their help.
