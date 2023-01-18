@@ -22,9 +22,9 @@ func search(users []user, name string) (u *user, err error) {
 
 func main() {
 	u, err := search([]user{{"lulei", 1}, {"wong", 2}}, "leilu")
-	if err == nil {
-		fmt.Println(u.id)
+	if err != nil {
+		panic(err)
 	} else {
-		fmt.Println(err)
+		fmt.Println(u.id)
 	}
 }

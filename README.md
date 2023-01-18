@@ -335,7 +335,9 @@ func search(users []user, name string) (u *user, err error) {
 When calling a function, we should first check whether the returned `error` reports an exception.
 
 ```go
-if err == nil {
+if err != nil {
+	panic(err)
+} else {
 	fmt.Println(u.id)
 }
 ```
