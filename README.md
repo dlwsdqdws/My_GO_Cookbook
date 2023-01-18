@@ -7,9 +7,9 @@
       - [If structure](#if-structure)
       - [Switch Structure](#switch-structure)
       - [For Structure](#for-structure)
-    - [Array](#array)
-    - [Slice](#slice)
     - [Data Structure](#data-structure)
+      - [Array](#array)
+      - [Slice](#slice)
       - [Map](#map)
     - [Struct](#struct)
     - [Iteration](#iteration)
@@ -111,7 +111,9 @@ for i <= 3 {
 }
 ```
 
-### Array
+### Data Structure
+
+#### Array
 
 1. Declaration
 
@@ -125,7 +127,7 @@ b := [5]int{1, 2, 3, 4, 5}
 
 Other operations are very similar with those in C/C++.
 
-### Slice
+#### Slice
 
 1. Slice itself does not store the data. It just like reference of variable-length array in C/C++.Changing a value in a slice will change the data it 'points' the array, so other slices 'point' the array(eg, copy) will also change.
 2. Declaration
@@ -157,8 +159,6 @@ board := [][]int{
 	[]int{1, 1, 0},
 }
 ```
-
-### Data Structure
 
 #### Map
 
