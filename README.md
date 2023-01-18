@@ -44,8 +44,9 @@
   - [Code Optimization](#code-optimization)
     - [Go Style](#go-style)
       - [Standard](#standard)
-      - [Comment](#comment)
       - [Code Format](#code-format)
+      - [Comment](#comment)
+    - [Performance Optimization](#performance-optimization)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -629,8 +630,16 @@ func BenchmarkRandomParallel(b *testing.B) {
 - Readability : easy to understand
 - Productivity : easy to cooperate with teammates
 
+#### Code Format
+
+Two useful packages.
+
+- [gofmt](https://pkg.go.dev/cmd/gofmt)
+- [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
+
 #### Comment
 
+- Good code has lots of comments, bad code requires lots of comments.
 - Both `/* */` and `//` are supported.
 - Should explain what the code does, why it works, why it is needed and what goes wrong.
 - Always add comments to the public symbols.
@@ -649,12 +658,8 @@ type Builder struct {
 
 For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
 
-#### Code Format
+### Performance Optimization
 
-Two useful packages.
-
-- [gofmt](https://pkg.go.dev/cmd/gofmt)
-- [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
 
 ## Useful Tools
 
