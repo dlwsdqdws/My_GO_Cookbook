@@ -353,24 +353,24 @@ if err != nil {
 
 | format |              meaning               |
 | :----: | :--------------------------------: |
-|   %v   |        return native value         |
-|  %+v   |  expand struct's names and values  |
-|  %#v   |       value in syntax format       |
-|   %b   |            binary value            |
-|   %f   |            float number            |
-|  %.2f  | float number with 2 decimal places |
+|  `%v`  |        return native value         |
+| `%+v`  |  expand struct's names and values  |
+| `%#v`  |       value in syntax format       |
+|  `%b`  |            binary value            |
+|  `%f`  |            float number            |
+| `%.2f` | float number with 2 decimal places |
 
 #### String Handling
 
-|      function       |                                   meaning                                   |
-| :-----------------: | :-------------------------------------------------------------------------: |
-|        Join         |                    Concatenate string arrays (or slices)                    |
-|        Split        |                Separate a string according to certain rules                 |
-|        Count        | Counts the number of non-overlapping occurrences of a substring in a string |
-|       Fields        |            Separate strings with one or more consecutive spaces             |
-| HasPrefix/HasSuffix |              Check if a string has a certain prefix or suffix               |
-|      IndexFunc      |             Find index of a character or substring in a string              |
-|   ToLower/ToUpper   |                               Case conversion                               |
+|         method          |                                   meaning                                   |
+| :---------------------: | :-------------------------------------------------------------------------: |
+|         `Join`          |                    Concatenate string arrays (or slices)                    |
+|         `Split`         |                Separate a string according to certain rules                 |
+|         `Count`         | Counts the number of non-overlapping occurrences of a substring in a string |
+|        `Fields`         |            Separate strings with one or more consecutive spaces             |
+| `HasPrefix`/`HasSuffix` |              Check if a string has a certain prefix or suffix               |
+|       `IndexFunc`       |             Find index of a character or substring in a string              |
+|   `ToLower`/`ToUpper`   |                               Case conversion                               |
 
 For more functions like io operations, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
 
@@ -378,13 +378,13 @@ For more functions like io operations, please refer to https://books.studygolang
 
 Strconv can realize the conversion between string and numeric types
 
-|  function  |                         meaning                          |
-| :--------: | :------------------------------------------------------: |
-|  ParseInt  |  Convert a string to a number, can set base and bitsize  |
-| ParseBool  |              Convert a string to a boolean               |
-| ParseFloat |       Cconvert a 'float' string to a float number        |
-| ParseUnit  | Similar to the ParseInt(), but does not accept +/- signs |
-|    Atoi    |      Convert an integer of type string to type int       |
+|    method    |                         meaning                          |
+| :----------: | :------------------------------------------------------: |
+|  `ParseInt`  |  Convert a string to a number, can set base and bitsize  |
+| `ParseBool`  |              Convert a string to a boolean               |
+| `ParseFloat` |       Cconvert a 'float' string to a float number        |
+| `ParseUnit`  | Similar to the ParseInt(), but does not accept +/- signs |
+|    `Atoi`    |      Convert an integer of type string to type int       |
 
 ### JSON
 
@@ -392,14 +392,14 @@ Strconv can realize the conversion between string and numeric types
 
 Time is a kind of data type.
 
-| function |               meaning               |
-| :------: | :---------------------------------: |
-|   Now    |            Current time             |
-|   Date   |            Create a Time            |
-|   Sub    |           Time difference           |
-|  Parse   |    Parse a time string to a Time    |
-|   Unix   |      Convert to unix timestamp      |
-|  Round   | Get the Time on the hour/minute/... |
+| method  |               meaning               |
+| :-----: | :---------------------------------: |
+|  `Now`  |            Current time             |
+| `Date`  |            Create a Time            |
+|  `Sub`  |           Time difference           |
+| `Parse` |    Parse a time string to a Time    |
+| `Unix`  |      Convert to unix timestamp      |
+| `Round` | Get the Time on the hour/minute/... |
 
 For Timer functions, please refer to https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter04/04.4.html
 
@@ -457,13 +457,30 @@ defer close(chan)
 
 ### Lock
 
-1. Definition
-
 Communication through sharing memory can lead to multiple goroutines accessing the same data at the same time, and thus we need a **Lock**.
 
 #### Mutex
 
+Each thread tries to lock the data before accessing it. The operation(R/W) can only be performed after successful locking, and then unlocked after the operation is completed. In other words, only one goroutine can access the data at a time when a mutex is used.
+
+```go
+var lock sync.Mutex // Declaration
+lock.Lock() // add lock
+//code...
+lock.Unlock() // unlock
+```
+
 #### WaitGroup
+
+WatiGroup can wait until all goroutines are executed and block the execution of the main thread until all goroutines are executed. WaitGroup has three methods:
+
+| method |                                      meaning                                       |
+| :----: | :--------------------------------------------------------------------------------: |
+| `Add`  |                Add the number of waiting goroutines to the counter                 |
+| `Done` | Decrement the value of the counter, should be executed at the end of the goroutine |
+| `Wait` |                     block until all WaitGroup counts become 0                      |
+
+Note that the number set by `Add()` must be consistent with the number of waiting goroutines otherwise a deadlock will happen.
 
 ## Useful Tools
 

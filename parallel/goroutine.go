@@ -22,5 +22,5 @@ func hello() {
 }
 
 func main() {
-	hello()
+	hello() // the output order may NOT be from 0 to 4
 }
