@@ -46,11 +46,14 @@
       - [Standard](#standard)
       - [Code Format](#code-format)
       - [Comment](#comment)
+      - [Naming Conventions](#naming-conventions)
+        - [Variable Name](#variable-name)
+        - [Function Name](#function-name)
     - [Performance Optimization](#performance-optimization)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
-<cente>**WELLCOME TO EDIT**</cente>
+**WELLCOME TO EDIT**
 
 ## Basic Grammer
 
@@ -642,7 +645,7 @@ Two useful packages.
 - Good code has lots of comments, bad code requires lots of comments.
 - Both `/* */` and `//` are supported.
 - Should explain what the code does, why it works, why it is needed and what goes wrong.
-- Always add comments to the public symbols.
+- Always add comments to the public symbols like `Read`.
 
 ```go
 /*
@@ -658,8 +661,18 @@ type Builder struct {
 
 For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
 
-### Performance Optimization
+#### Naming Conventions
 
+##### Variable Name
+
+- Acronyms should be all uppercase, eg `ServeHTTP`. but when it is at the beginning of the variable and does not need to be exported, could be all lowercase, eg `xmlHTTPRequest`.
+- The farther a variable is from where it is used, the more contextual information its name needs to carry, eg `deadline` instead of `t`.
+
+##### Function Name
+
+- function name should be as short as possible if it does not carry the context information of the package.
+
+### Performance Optimization
 
 ## Useful Tools
 
