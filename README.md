@@ -30,12 +30,13 @@
   - [Concurrent and Parallel](#concurrent-and-parallel)
     - [Goroutine](#goroutine)
     - [Channel](#channel)
-    - [Sync](#sync)
+    - [Synchronization](#synchronization)
       - [Mutex](#mutex)
       - [WaitGroup](#waitgroup)
   - [Dependency Management](#dependency-management)
     - [GO PATH](#go-path)
     - [GO Vendor](#go-vendor)
+    - [GO Module](#go-module)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -464,7 +465,7 @@ The channel should be closed after being used, otherwise it is easy to cause dea
 defer close(chan)
 ```
 
-### Sync
+### Synchronization
 
 Communication through sharing memory can lead to multiple goroutines accessing the same data at the same time, and thus we need a **Lock**.
 
@@ -504,7 +505,15 @@ Disadvantage : Unable to achieve Version Control.
 
 ### GO Vendor
 
+- vendor : place a copy of all dependent packages.
 
+Disadvantage : Dependencies conflict.
+
+### GO Module
+
+- go.mod
+- Proxy
+- go get/mod
 
 ## Useful Tools
 
