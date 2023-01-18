@@ -412,10 +412,12 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 - Goroutine : works on user mode, KB level in stack.
 - Thread : works on kernel mode, MB level in stack.
 
-2. Use `go` start a new goroutine. 
+2. Use `go` start a new goroutine.
+
 ```go
 go func(){}
 ```
+
 Function can be anonymous. When a goroutine needs to be blocked, the system will move other goroutines waiting to run on this thread to other threads that can run programs, so other goroutines will not be stuck.
 
 ### Channel
@@ -426,15 +428,26 @@ Go advocates sharing memory through communication instead of communication throu
 
 2. Usage
 
-We can create a channel by using 
+We can create a channel by using
+
 ```go
 make(chan mem_type ,[buffer_size])
 ```
-- If buffer is not used, the channel is a synchronous channel. The sender will block until a receiver has received a value from the channel. The receiver blocks until there is a value to receive.
-  
+
+- If buffer is NOT used, the channel is a synchronous channel. The sender will block until a receiver has received a value from the channel. The receiver blocks until there is a value to receive.
 - If buffer is used, the channel is a producer-consumer model. The sender will block until the sent value is sent into the buffer. If the buffer is full, the sender will block until a receiver receives a value. The receiver blocks until there is a value to receive.
 
+The channel should be closed after being used, otherwise it is easy to cause deadlock.
+
+```go
+defer close(chan)
+```
+
 ### Lock
+
+1. Definition
+
+Communication through sharing memory needs a **Lock**.
 
 ## Useful Tools
 
