@@ -42,7 +42,6 @@
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
-
 **WELLCOME TO EDIT**
 
 ## Basic Grammer
@@ -494,7 +493,6 @@ WaitGroup can help set 'sleep_time' accurately. WatiGroup can wait until all gor
 
 Note that the number set by `Add()` must be consistent with the number of waiting goroutines otherwise a deadlock will happen. For more examples please refer to https://www.cnblogs.com/sunshineliulu/p/14779158.html.
 
-
 ## Dependency Management
 
 ### GO Path
@@ -502,7 +500,7 @@ Note that the number set by `Add()` must be consistent with the number of waitin
 - bin : compiled binaries
 - pkg : compiled intermediate products to speed up compilation
 - src : source code
-  
+
 Disadvantage : Unable to achieve Version Control.
 
 ### GO Vendor
@@ -521,6 +519,20 @@ Disadvantage : Dependencies conflict.
 
 ### Unit Test
 
+1. Rules
+
+- All test files end with `_test.go`
+- Test function `func TestXxxx(t *testing.T)`
+- Initialization should be included in `TestMain` function.
+
+```go
+func TestMain(m *testing.M) {
+   // do init
+   code := m.Run() // run test
+   // do close and release
+   os.Exit(code)
+}
+```
 
 ## Useful Tools
 
