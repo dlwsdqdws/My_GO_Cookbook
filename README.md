@@ -34,9 +34,10 @@
       - [Mutex](#mutex)
       - [WaitGroup](#waitgroup)
   - [Dependency Management](#dependency-management)
-    - [GO PATH](#go-path)
+    - [GO Path](#go-path)
     - [GO Vendor](#go-vendor)
     - [GO Module](#go-module)
+  - [Test](#test)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -495,7 +496,7 @@ Note that the number set by `Add()` must be consistent with the number of waitin
 
 ## Dependency Management
 
-### GO PATH
+### GO Path
 
 - bin : compiled binaries
 - pkg : compiled intermediate products to speed up compilation
@@ -511,9 +512,11 @@ Disadvantage : Dependencies conflict.
 
 ### GO Module
 
-- go.mod
-- Proxy
-- go get/mod
+- go.mod : identify module path and version information (${MAJOR}.{MINOR}.${PATCH}), describe unit dependencies (including labeling indrect and incompatible dependencies). When compiling, go will choose the lowest compatible version.
+- Proxy : cache version content to achieve reliable dependency distribution.
+- go get/mod : local tools
+
+## Test
 
 ## Useful Tools
 
