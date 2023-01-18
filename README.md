@@ -534,6 +534,20 @@ func TestMain(m *testing.M) {
 }
 ```
 
+- `assert` package
+
+```go
+import "github.com/stretchr/testify/assert"
+
+func TestFunc(t *testing.T) {
+    output := Func()
+    expectOutput := ""
+    assert.Equal(t, expectOutput, output)
+}
+```
+
+For more examples, please refer to https://juejin.cn/post/6908938380114034701.
+
 ## Useful Tools
 
 1. [A Tour of Go](https://go.dev/tour/welcome)
