@@ -416,8 +416,9 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 ### Channel
 
 1. Definition
-   
+
 Go advocates sharing memory through communication instead of communication through sharing memory. Sharing memory through communication needs a **channel**. A channel is a data structure used to transfer data. It can be used between two goroutines to synchronize operation and communication by passing a value of a specified type.
+
 2. Creation
 
 We can create a channel by using `make(chan mem_type ,[buffer_size])`. If buffer is not used, the channel is a synchronous channel. If buffer is used, the channel is a producer-consumer model.
