@@ -44,12 +44,13 @@
   - [Code Optimization](#code-optimization)
     - [Go Style](#go-style)
       - [Standard](#standard)
-      - [Code Format](#code-format)
+      - [Format Tools](#format-tools)
       - [Comment](#comment)
       - [Naming Conventions](#naming-conventions)
         - [Variable](#variable-1)
         - [Function](#function-1)
         - [Package](#package)
+      - [Code](#code)
     - [Performance Optimization](#performance-optimization)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
@@ -634,7 +635,7 @@ func BenchmarkRandomParallel(b *testing.B) {
 - Readability : easy to understand
 - Productivity : easy to cooperate with teammates
 
-#### Code Format
+#### Format Tools
 
 Two useful packages.
 
@@ -690,6 +691,53 @@ func Serve(I net.Listener, handler Handler) error
 - Better not to use commonly used variable names like `bufio` instead of `buf`.
 - Better to use singular instead of plural like `encoding` instead of `encodings`.
 - Use abbreviations sparingly.
+
+#### Code
+
+- Avoid nesting
+
+```go
+// bad
+if foo {
+    return x
+} else {
+    return nil
+}
+​
+// good
+if foo {
+    return x
+}
+return nil
+```
+
+- Keep normal code paths with minimal indentation
+
+```go
+// bad
+func OneFunc() error {
+    err := doSomething()
+    if err == nil{
+        err := doAnotherThing()
+        if err == nil{
+            return nil
+        }
+        return err
+    }
+    return err
+}
+
+// good
+func OneFunc() error {
+    if err := doSomething(); err != nil{
+        return err
+    }
+    if err := doAnotherThing(); err != nil{
+        return err
+    }
+    return nil
+}
+```
 
 ### Performance Optimization
 
