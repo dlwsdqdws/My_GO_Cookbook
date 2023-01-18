@@ -30,6 +30,8 @@
     - [Goroutine](#goroutine)
     - [Channel](#channel)
     - [Lock](#lock)
+      - [Mutex](#mutex)
+      - [WaitGroup](#waitgroup)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -457,7 +459,11 @@ defer close(chan)
 
 1. Definition
 
-Communication through sharing memory needs a **Lock**.
+Communication through sharing memory can lead to multiple goroutines accessing the same data at the same time, and thus we need a **Lock**.
+
+#### Mutex
+
+#### WaitGroup
 
 ## Useful Tools
 
