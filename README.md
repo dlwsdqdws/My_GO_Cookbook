@@ -44,6 +44,7 @@
   - [Code Optimization](#code-optimization)
     - [Go Style](#go-style)
       - [Standard](#standard)
+      - [Comment](#comment)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -626,6 +627,24 @@ func BenchmarkRandomParallel(b *testing.B) {
 - Simplicity : eliminate unnecessary expressions
 - Readability : easy to understand
 - Productivity : easy to cooperate with teammates
+
+#### Comment
+
+- Both `/* */` and `//` are supported.
+- Should explain what the code does, why it works, why it is needed and what goes wrong.
+- Always add comments to the public symbols.
+
+```go
+// A Builder is used to efficiently build a string using Write methods.
+// It minimizes memory copying. The zero value is ready to use.
+// Do not copy a non-zero Builder.
+type Builder struct {
+    addr *Builder // of receiver, to detect copies by value
+    buf  []byte
+}
+```
+
+For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
 
 ## Useful Tools
 
