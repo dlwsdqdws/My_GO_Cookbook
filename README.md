@@ -672,7 +672,7 @@ For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
 ##### Function
 
 - function name should be as short as possible and it does not need to carry the information of the package.
-- Type information can be omitted when the return type's name is consistent with package name. eg, 
+- Type information can be omitted when the return type's name is consistent with package name. eg,
 
 ```go
 package http
@@ -683,6 +683,13 @@ func Serve(I net.Listener, handler Handler) error
 - Type information should be added to the function name when the package name is not consistent with the return type's name of the function.
 
 ##### Package
+
+- Consists of lowercase letters only.
+- Be short and contain some contextual information.
+- Do not use the same name as the standard library.
+- Better not to use commonly used variable names like `bufio` instead of `buf`.
+- Better to use singular instead of plural like `encoding` instead of `encodings`.
+- Use abbreviations sparingly.
 
 ### Performance Optimization
 
