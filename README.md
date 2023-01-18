@@ -47,8 +47,9 @@
       - [Code Format](#code-format)
       - [Comment](#comment)
       - [Naming Conventions](#naming-conventions)
-        - [Variable Name](#variable-name)
-        - [Function Name](#function-name)
+        - [Variable](#variable-1)
+        - [Function](#function-1)
+        - [Package](#package)
     - [Performance Optimization](#performance-optimization)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
@@ -663,14 +664,25 @@ For more exmaples please refer to https://juejin.cn/post/7189519144897740861.
 
 #### Naming Conventions
 
-##### Variable Name
+##### Variable
 
 - Acronyms should be all uppercase, eg `ServeHTTP`. but when it is at the beginning of the variable and does not need to be exported, could be all lowercase, eg `xmlHTTPRequest`.
 - The farther a variable is from where it is used, the more contextual information its name needs to carry, eg `deadline` instead of `t`.
 
-##### Function Name
+##### Function
 
-- function name should be as short as possible if it does not carry the context information of the package.
+- function name should be as short as possible and it does not need to carry the information of the package.
+- Type information can be omitted when the return type's name is consistent with package name. eg, 
+
+```go
+package http
+
+func Serve(I net.Listener, handler Handler) error
+```
+
+- Type information should be added to the function name when the package name is not consistent with the return type's name of the function.
+
+##### Package
 
 ### Performance Optimization
 
