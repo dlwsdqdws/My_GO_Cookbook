@@ -39,6 +39,8 @@
     - [GO Module](#go-module)
   - [Test](#test)
     - [Unit Test](#unit-test)
+    - [Mock Test](#mock-test)
+    - [Benchmark](#benchmark)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -519,8 +521,6 @@ Disadvantage : Dependencies conflict.
 
 ### Unit Test
 
-1. Rules
-
 - All test files end with `_test.go`
 - Test function `func TestXxxx(t *testing.T)`
 - Initialization should be included in `TestMain` function.
@@ -547,6 +547,12 @@ func TestFunc(t *testing.T) {
 ```
 
 For more examples, please refer to https://juejin.cn/post/6908938380114034701.
+
+- Code coverage is the standard for judging whether the tests are good or bad. Using `--cover` can get the code coverage. It is good to make it more than 50%, better for more than 80%. 
+
+### Mock Test
+
+### Benchmark
 
 ## Useful Tools
 
