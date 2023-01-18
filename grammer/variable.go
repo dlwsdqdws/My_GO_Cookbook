@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	var a = "init"
+	var a string
+	a = "init"
 
 	g := a + "hhh"
 
