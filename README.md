@@ -33,8 +33,12 @@
     - [Safety](#safety)
       - [Mutex](#mutex)
       - [WaitGroup](#waitgroup)
+  - [Dependency Management](#dependency-management)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
+
+
+**WELLCOME TO EDIT**
 
 ## Basic Grammer
 
@@ -484,6 +488,9 @@ WaitGroup can help set 'sleep_time' accurately. WatiGroup can wait until all gor
 | `Wait` |                     block until all WaitGroup counts become 0                      |
 
 Note that the number set by `Add()` must be consistent with the number of waiting goroutines otherwise a deadlock will happen. For more examples please refer to https://www.cnblogs.com/sunshineliulu/p/14779158.html.
+
+
+## Dependency Management
 
 ## Useful Tools
 
