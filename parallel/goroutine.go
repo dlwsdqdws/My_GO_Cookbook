@@ -16,6 +16,7 @@ func hello() {
 		}(i)
 	}
 
+	// Create goroutine takes some time
 	// Ensure that the main goroutine does not exit before the sub-goroutine is executed
 	time.Sleep(time.Second)
 }
