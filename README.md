@@ -408,14 +408,17 @@ For Timer functions, please refer to https://books.studygolang.com/The-Golang-St
 
 1. Differences between Goroutine and Threads
 
-- Goroutine : works on user mode, KB level in stack. 
-- Thread : works on kernel mode, MB level in stack. 
+- Goroutine : works on user mode, KB level in stack.
+- Thread : works on kernel mode, MB level in stack.
 
 2. Use `go func()` start a new goroutine. Function can be anonymous. When a goroutine needs to be blocked, the system will move other goroutines waiting to run on this thread to other threads that can run programs, so other goroutines will not be stuck.
 
 ### Channel
 
-Go advocates sharing memory through communication instead of communication through sharing memory. Sharing memory through communication needs a channel. A channel is a data structure used to transfer data. It can be used between two goroutines to synchronize operation and communication by passing a value of a specified type. We can create a channel by using `make(chan mem_type ,[buffer_size])`. If buffer is not used, the channel is a synchronous channel. If buffer is used, the channel is a producer-consumer model.
+1. Definition
+   Go advocates sharing memory through communication instead of communication through sharing memory. Sharing memory through communication needs a **channel**. A channel is a data structure used to transfer data. It can be used between two goroutines to synchronize operation and communication by passing a value of a specified type.
+2. Creation
+   We can create a channel by using `make(chan mem_type ,[buffer_size])`. If buffer is not used, the channel is a synchronous channel. If buffer is used, the channel is a producer-consumer model.
 
 ## Useful Tools
 
