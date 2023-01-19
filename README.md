@@ -826,7 +826,7 @@ for i:= 0; i < n; i++{
 }
 ```
 
-- Empty struct + map = set
+- `map`[key](Empty struct) = `set`
   
 
 #### Atomic Package
