@@ -847,7 +847,7 @@ func main() {
 		f_add()
 		f_sub()
 	}
-	fmt.Printf("x: %v\n", x)
+	fmt.Printf("x: %v\n", x)   // 100
 }
 ```
 
