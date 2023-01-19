@@ -56,7 +56,9 @@
     - [Performance Optimization](#performance-optimization)
       - [Slice](#slice-1)
       - [Map](#map-1)
-      - [strings.Buildr](#stringsbuildr)
+      - [String](#string-1)
+      - [Struct](#struct-1)
+      - [Atomic Package](#atomic-package)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -807,9 +809,27 @@ func main(){
 
 - Better to provide size when `make` a map.
 
-#### strings.Buildr
+#### String
 
+- Use `strings.Builder` to replace `+` or `bytes.Buffer`.
+- Better to provide size using `strings.Builder.Grow(size)`.
 
+#### Struct
+
+- Use an empty struct as a placeholder.
+
+```go
+m ：= make(map[int]struct{})
+
+for i:= 0; i < n; i++{
+    m[i] = struct{}{}
+}
+```
+
+- Empty struct + map = set
+  
+
+#### Atomic Package
 
 ## Useful Tools
 
