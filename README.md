@@ -54,6 +54,9 @@
         - [Control Flow](#control-flow)
         - [Error Handling](#error-handling)
     - [Performance Optimization](#performance-optimization)
+      - [Slice](#slice-1)
+      - [Map](#map-1)
+      - [strings.Buildr](#stringsbuildr)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -794,6 +797,15 @@ func main(){
 ```
 
 ### Performance Optimization
+
+#### Slice
+
+- Better to provide size when `make` a slice.
+- Better to use `copy` to replace re-slice.
+
+#### Map
+
+#### strings.Buildr
 
 ## Useful Tools
 
