@@ -805,7 +805,11 @@ func main(){
 
 #### Map
 
+- Better to provide size when `make` a map.
+
 #### strings.Buildr
+
+
 
 ## Useful Tools
 
