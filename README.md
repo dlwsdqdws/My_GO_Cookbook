@@ -61,6 +61,8 @@
       - [Atomic Package](#atomic-package)
   - [Framework](#framework)
     - [ORM - Gorm](#orm---gorm)
+      - [Installation](#installation)
+      - [Connect Database](#connect-database)
     - [RPC - Kitex](#rpc---kitex)
     - [HTTP - Hertz](#http---hertz)
   - [Useful Tools](#useful-tools)
@@ -860,6 +862,31 @@ func main() {
 ## Framework
 
 ### ORM - Gorm
+
+#### Installation
+
+```go
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/mysql
+```
+
+#### Connect Database
+
+- Gorm can support MySQL, PostgreSQL, SQlite, SQL Server. Take SQLServer as an example.
+
+```go
+// import driver
+import (
+	"gorm.io/driver/sqlserver"
+	"gorm.io/gorm"
+)
+
+dsn := "sqlserver://gorm:LoremIpsum86@localhost:9930?database=gorm"
+db, err := gorm.Open(sqlserver.Open(dsn), &gorm.Config{})
+```
+
+- Note that always check err before operating CRUD. Here `panic` is suggested if the database cannot be connected.
+  
 
 ### RPC - Kitex
 
