@@ -10,6 +10,7 @@
       - [Update](#update)
       - [Delete](#delete)
     - [Transaction](#transaction)
+    - [Hook](#hook)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
 
@@ -246,6 +247,57 @@ db.Unscoped().Delete(&order)
 ```
 
 ### Transaction
+
+- Transaction is a sequence of database operations that are either all executed or none of them are executed. A transaction consists of all database operations performed between the start of the transaction and the end of the transaction.
+- If CUD is not needed, better to disable transaction to improve performance.
+
+```go
+db, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{
+  SkipDefaultTransaction: true,
+})
+```
+
+- Gorm Transaction provides `Begin()`, `Commit` and `Rollback()`.
+
+```go
+// use tx instead of db to start a transaction
+tx := db.Begin()
+​
+// db operations
+tx.Create(...)
+​
+// ...
+​
+// rollback if error occurs
+if err := tx.Create(...).Error; err != nil{
+  tx.Rollback()
+  return 
+}
+​
+// otherwise submit this transaction
+tx.Commit()
+```
+
+- Gorm also provides a Transaction method. 
+
+```go
+if err := db.Transaction(func(tx *gorm.DB) error {
+  if err := tx.Create(&User{Name: "name"}).Error; err != nil {
+    // rollback automatically
+    return err
+  }
+
+  if err := tx.Create(&User{Name: "name1"}).Error; err != nil {
+    return err
+  }
+
+  return nil
+}); err != nil{
+  return 
+}
+```
+
+### Hook
 
 ## RPC - Kitex
 
