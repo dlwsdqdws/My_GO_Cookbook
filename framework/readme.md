@@ -7,8 +7,9 @@
     - [CRUD](#crud)
       - [Create](#create)
       - [Read](#read)
-    - [Update](#update)
-    - [Delete](#delete)
+      - [Update](#update)
+      - [Delete](#delete)
+    - [Transaction](#transaction)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
 
@@ -159,7 +160,7 @@ db.Where([]int64{20, 21, 22}).Find(&products)
 // SELECT * FROM products WHERE id IN (20, 21, 22);
 ```
 
-### Update
+#### Update
 
 - Single
 
@@ -192,7 +193,7 @@ db.Model(&Product{ID : 110}).Select("Price").Updates(map[string]interface{}{"Pri
 db.Model(&Product{ID : 111}).Updates("age", gorm.Expr("age * ? + ?", 2, 100))
 ```
 
-### Delete
+#### Delete
 
 - Hard Delete
 
@@ -200,7 +201,7 @@ db.Model(&Product{ID : 111}).Updates("age", gorm.Expr("age * ? + ?", 2, 100))
 db.Delete(&p)
 // DELETE from products where id = 10;
 
-// 带额外条件的删除
+// where could be used
 db.Where("name = ?", "jinzhu").Delete(&p)
 // DELETE from products where id = 10 AND name = "jinzhu";
 
@@ -243,6 +244,8 @@ db.Unscoped().Where("age = 20").Find(&users)
 db.Unscoped().Delete(&order)
 // DELETE FROM orders WHERE id=10;
 ```
+
+### Transaction
 
 ## RPC - Kitex
 
