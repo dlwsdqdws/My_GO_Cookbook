@@ -65,6 +65,7 @@
       - [Connect to Database](#connect-to-database)
       - [CRUD](#crud)
         - [Create](#create)
+        - [Read](#read)
     - [RPC - Kitex](#rpc---kitex)
     - [HTTP - Hertz](#http---hertz)
   - [Useful Tools](#useful-tools)
@@ -884,12 +885,17 @@ import (
 	"gorm.io/gorm"
 )
 
-// data source name(dsn)
 dsn := "sqlserver://gorm:LoremIpsum86@localhost:9930?database=gorm"
 db, err := gorm.Open(sqlserver.Open(dsn), &gorm.Config{})
 ```
 
-- DSN
+- DSN(data source name).
+
+```go
+"user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+```
+
+
 
 - Note that always check err before operating CRUD. Here `panic` is suggested if the database cannot be connected.
 
@@ -944,6 +950,47 @@ if res.Error != nil{
 p := &Product({ Code : "042", ID: 1})
 // here we do nothing when conflict happens
 db.Clauses(clause.Onconfict{DoNothing : true}).Create(&p)
+```
+
+##### Read
+
+- `First` method returns the first data that meets the specified criteria, `ErrRecodeNotFound` if no such data.
+
+```go
+u := &Prodyct{}
+db.First(u)
+```
+
+- `Find` method returns multiple data meets `where` criteria, nothing if no such data.
+
+```go
+// Get first matched record
+db.Where("name = ?", "jinzhu").First(&user)
+// SELECT * FROM users WHERE name = 'jinzhu' ORDER BY id LIMIT 1;
+
+// Get all matched records
+db.Where("name <> ?", "jinzhu").Find(&users)
+// SELECT * FROM users WHERE name <> 'jinzhu';
+
+// IN
+db.Where("name IN ?", []string{"jinzhu", "jinzhu 2"}).Find(&users)
+// SELECT * FROM users WHERE name IN ('jinzhu','jinzhu 2');
+
+// LIKE
+db.Where("name LIKE ?", "%jin%").Find(&users)
+// SELECT * FROM users WHERE name LIKE '%jin%';
+
+// AND
+db.Where("name = ? AND age >= ?", "jinzhu", "22").Find(&users)
+// SELECT * FROM users WHERE name = 'jinzhu' AND age >= 22;
+
+// Time
+db.Where("updated_at > ?", lastWeek).Find(&users)
+// SELECT * FROM users WHERE updated_at > '2000-01-01 00:00:00';
+
+// BETWEEN
+db.Where("created_at BETWEEN ? AND ?", lastWeek, today).Find(&users)
+// SELECT * FROM users WHERE created_at BETWEEN '2000-01-01 00:00:00' AND '2000-01-08 00:00:00';
 ```
 
 ### RPC - Kitex
