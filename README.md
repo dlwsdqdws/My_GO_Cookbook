@@ -62,7 +62,9 @@
   - [Framework](#framework)
     - [ORM - Gorm](#orm---gorm)
       - [Installation](#installation)
-      - [Connect Database](#connect-database)
+      - [Connect to Database](#connect-to-database)
+      - [CRUD](#crud)
+        - [Create](#create)
     - [RPC - Kitex](#rpc---kitex)
     - [HTTP - Hertz](#http---hertz)
   - [Useful Tools](#useful-tools)
@@ -867,10 +869,11 @@ func main() {
 
 ```go
 go get -u gorm.io/gorm
+// take mysql as an example
 go get -u gorm.io/driver/mysql
 ```
 
-#### Connect Database
+#### Connect to Database
 
 - Gorm can support MySQL, PostgreSQL, SQlite, SQL Server. Take SQLServer as an example.
 
@@ -881,12 +884,55 @@ import (
 	"gorm.io/gorm"
 )
 
+// data source name(dsn)
 dsn := "sqlserver://gorm:LoremIpsum86@localhost:9930?database=gorm"
 db, err := gorm.Open(sqlserver.Open(dsn), &gorm.Config{})
 ```
 
+- DSN
+
 - Note that always check err before operating CRUD. Here `panic` is suggested if the database cannot be connected.
-  
+
+#### CRUD
+
+- GORM uses `ID` as the primary key, the snake-case of the structure name as the table name, the snake-case field name as the column name, and uses the `CreatedAt`, `UpdatedAt` fields to track creation and update time. So, `ID`, `CreatedAt`, `UpdatedAt`, `DeletedAt` will be automatically created and work as their name.
+
+```go
+type Product struct {
+    ID      uint    `gorm:"primarykey"`
+    Code    string  `gorm:"column: code"`
+    Price   uint    `gorm:"column: user_id"`
+
+    CreatedAt time.Time
+    UpdatedAt time.Time
+    DeletedAt sql.NullTime `gorm:"index"`
+}
+```
+
+##### Create
+
+- One piece of data.
+
+```go
+p := &Product({ Code : "042", Price: 100})
+res := db.Create(p)
+if res.Error != nil{
+    // error handler
+}
+```
+
+- Multiple pieces of data
+
+```go
+// Create a list struct
+products := []*Product{{Code : "041"}, {Code : "042"}, {Code : "043"}}
+res := db.Create(products)
+if res.Error != nil{
+    // error handler
+}
+```
+
+- Is it no need to set values for `ID`, `CreatedAt`, etc.
 
 ### RPC - Kitex
 
