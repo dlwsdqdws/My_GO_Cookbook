@@ -194,6 +194,56 @@ db.Model(&Product{ID : 111}).Updates("age", gorm.Expr("age * ? + ?", 2, 100))
 
 ### Delete
 
+- Hard Delete
+
+```go
+db.Delete(&p)
+// DELETE from products where id = 10;
+
+// 带额外条件的删除
+db.Where("name = ?", "jinzhu").Delete(&p)
+// DELETE from products where id = 10 AND name = "jinzhu";
+
+db.Delete(&User{}, 10)
+// DELETE FROM products WHERE id = 10;
+
+db.Delete(&User{}, "10")
+// DELETE FROM products WHERE id = 10;
+
+db.Delete(&products, []int{1,2,3})
+// DELETE FROM products WHERE id IN (1,2,3);
+
+db.Where("product LIKE ?", "%jinzhu%").Delete(&Product{})
+// DELETE from products where product LIKE "%jinzhu%";
+
+db.Delete(&Product{}, "product LIKE ?", "%jinzhu%")
+// DELETE from products where product LIKE "%jinzhu%";
+```
+
+- Soft Delete
+
+```go
+// use gorm.DeletedAt
+// when call Delete(), the data will not be deleted physically 
+// but label DeletedAt as current time
+// when calling Find(), soft-deleted data will be ignored
+type User struct {
+  ID int64
+  Name string
+  Age int64
+  Deleted gorm.DeletedAt
+}
+
+db.Where("age = ?", 20).Delete(&User{})
+// UPDATE users SET deleted_at="2013-10-29 10:23" WHERE age = 20;
+
+// Use Unscoped can find soft-deleted data or realize hard delete
+db.Unscoped().Where("age = 20").Find(&users)
+// SELECT * FROM users WHERE age = 20;
+db.Unscoped().Delete(&order)
+// DELETE FROM orders WHERE id=10;
+```
+
 ## RPC - Kitex
 
 ## HTTP - Hertz
