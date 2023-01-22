@@ -8,7 +8,7 @@
       - [Create](#create)
       - [Read](#read)
     - [Update](#update)
-    - [delete](#delete)
+    - [Delete](#delete)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
 
@@ -164,10 +164,35 @@ db.Where([]int64{20, 21, 22}).Find(&products)
 - Single
 
 ```go
-db.Model(&product).Update("Price", 200)
+db.Model(&product).Where("name = ?", "jinzhu").Update("Price", 200)
 ```
 
-### delete
+- Multiple
+
+```go
+db.Model(&Product{ID : 111}).Updates(Product{Name : "hello", Age : 20})
+```
+
+- Can use `map` or `Select` update zero values.
+
+```go
+db.Model(&product).Updates(map[string]interface{}{"Price": 200, "activated": false})
+```
+
+- Selected Column
+
+```go
+// only update price even though multiple columns in the map
+db.Model(&Product{ID : 110}).Select("Price").Updates(map[string]interface{}{"Price": 200, "activated": false})
+```
+
+- SQL
+
+```go
+db.Model(&Product{ID : 111}).Updates("age", gorm.Expr("age * ? + ?", 2, 100))
+```
+
+### Delete
 
 ## RPC - Kitex
 
