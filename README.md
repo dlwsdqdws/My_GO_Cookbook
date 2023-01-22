@@ -903,6 +903,11 @@ type Product struct {
     Code    string  `gorm:"column: code"`
     Price   uint    `gorm:"column: user_id"`
 
+    // can set default values
+    Name    string `gorm:"default:galeone"`
+    Age     int64  `gorm:"default:18"`
+
+    // the belows can be created automatically
     CreatedAt time.Time
     UpdatedAt time.Time
     DeletedAt sql.NullTime `gorm:"index"`
@@ -924,7 +929,7 @@ if res.Error != nil{
 - Multiple pieces of data
 
 ```go
-// Create a list struct
+// Create a list of struct
 products := []*Product{{Code : "041"}, {Code : "042"}, {Code : "043"}}
 res := db.Create(products)
 if res.Error != nil{
@@ -933,6 +938,13 @@ if res.Error != nil{
 ```
 
 - Is it no need to set values for `ID`, `CreatedAt`, etc.
+- Use `clause.Onconfict` to handle conflict. We cannot use `when` after `Create()`.
+
+```go
+p := &Product({ Code : "042", ID: 1})
+// here we do nothing when conflict happens
+db.Clauses(clause.Onconfict{DoNothing : true}).Create(&p)
+```
 
 ### RPC - Kitex
 
