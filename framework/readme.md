@@ -5,6 +5,7 @@
     - [CRUD](#crud)
       - [Create](#create)
       - [Read](#read)
+    - [Update](#update)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
 
@@ -111,34 +112,53 @@ db.First(u)
 - `Find` method returns multiple data meets `where` criteria, nothing if no such data.
 
 ```go
+p := &Product{}
 // Get first matched record
-db.Where("name = ?", "jinzhu").First(&user)
-// SELECT * FROM users WHERE name = 'jinzhu' ORDER BY id LIMIT 1;
+res := db.Where("name = ?", "jinzhu").First(p)
+// SELECT * FROM products WHERE name = 'jinzhu' ORDER BY id LIMIT 1;
 
+products := make([]*Product, 0)
 // Get all matched records
-db.Where("name <> ?", "jinzhu").Find(&users)
-// SELECT * FROM users WHERE name <> 'jinzhu';
+res = db.Where("name <> ?", "jinzhu").Find(&products)
+// SELECT * FROM products WHERE name <> 'jinzhu';
 
+// Other Inquiries 
 // IN
-db.Where("name IN ?", []string{"jinzhu", "jinzhu 2"}).Find(&users)
-// SELECT * FROM users WHERE name IN ('jinzhu','jinzhu 2');
+db.Where("name IN ?", []string{"jinzhu", "jinzhu 2"}).Find(&products)
+// SELECT * FROM products WHERE name IN ('jinzhu','jinzhu 2');
 
 // LIKE
-db.Where("name LIKE ?", "%jin%").Find(&users)
-// SELECT * FROM users WHERE name LIKE '%jin%';
+db.Where("name LIKE ?", "%jin%").Find(&products)
+// SELECT * FROM products WHERE name LIKE '%jin%';
 
 // AND
-db.Where("name = ? AND age >= ?", "jinzhu", "22").Find(&users)
-// SELECT * FROM users WHERE name = 'jinzhu' AND age >= 22;
+db.Where("name = ? AND age >= ?", "jinzhu", "22").Find(&products)
+// SELECT * FROM products WHERE name = 'jinzhu' AND age >= 22;
 
 // Time
-db.Where("updated_at > ?", lastWeek).Find(&users)
-// SELECT * FROM users WHERE updated_at > '2000-01-01 00:00:00';
+db.Where("updated_at > ?", lastWeek).Find(&products)
+// SELECT * FROM products WHERE updated_at > '2000-01-01 00:00:00';
 
 // BETWEEN
-db.Where("created_at BETWEEN ? AND ?", lastWeek, today).Find(&users)
-// SELECT * FROM users WHERE created_at BETWEEN '2000-01-01 00:00:00' AND '2000-01-08 00:00:00';
+db.Where("created_at BETWEEN ? AND ?", lastWeek, today).Find(&products)
+// SELECT * FROM products WHERE created_at BETWEEN '2000-01-01 00:00:00' AND '2000-01-08 00:00:00';
 ```
+
+- When using a struct as an inquiries, the zero values(eg, 0, false) will not be used. If zero values is needed, we can use `map` as a inquery.
+
+```go
+db.Where(map[string]interface{}{"name": "jinzhu", "age": 0}).Find(&products)
+// SELECT * FROM products WHERE name = "jinzhu" AND age = 0;
+```
+
+- Slice can used as a inquery.
+
+```go
+db.Where([]int64{20, 21, 22}).Find(&products)
+// SELECT * FROM products WHERE id IN (20, 21, 22);
+```
+
+### Update
 
 ## RPC - Kitex
 
