@@ -11,9 +11,9 @@
       - [Delete](#delete)
     - [Transaction](#transaction)
     - [Hook](#hook)
+    - [Plugins](#plugins)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
-
 
 ## ORM - Gorm
 
@@ -45,8 +45,6 @@ db, err := gorm.Open(sqlserver.Open(dsn), &gorm.Config{})
 ```go
 "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 ```
-
-
 
 - Note that always check err before operating CRUD. Here `panic` is suggested if the database cannot be connected.
 
@@ -125,7 +123,7 @@ products := make([]*Product, 0)
 res = db.Where("name <> ?", "jinzhu").Find(&products)
 // SELECT * FROM products WHERE name <> 'jinzhu';
 
-// Other Inquiries 
+// Other Inquiries
 // IN
 db.Where("name IN ?", []string{"jinzhu", "jinzhu 2"}).Find(&products)
 // SELECT * FROM products WHERE name IN ('jinzhu','jinzhu 2');
@@ -226,7 +224,7 @@ db.Delete(&Product{}, "product LIKE ?", "%jinzhu%")
 
 ```go
 // use gorm.DeletedAt
-// when call Delete(), the data will not be deleted physically 
+// when call Delete(), the data will not be deleted physically
 // but label DeletedAt as current time
 // when calling Find(), soft-deleted data will be ignored
 type User struct {
@@ -249,11 +247,12 @@ db.Unscoped().Delete(&order)
 ### Transaction
 
 - Transaction is a sequence of database operations that are either all executed or none of them are executed. A transaction consists of all database operations performed between the start of the transaction and the end of the transaction.
-- If CUD is not needed, better to disable transaction to improve performance.
+- If CUD is not needed, better to disable transaction to improve performance. Use `PrepareStmt` caches prepared statements can improve the speed of subsequent calls.
 
 ```go
 db, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{
   SkipDefaultTransaction: true,
+  PrepareStmt: true
 })
 ```
 
@@ -271,14 +270,14 @@ tx.Create(...)
 // rollback if error occurs
 if err := tx.Create(...).Error; err != nil{
   tx.Rollback()
-  return 
+  return
 }
 ​
 // otherwise submit this transaction
 tx.Commit()
 ```
 
-- Gorm also provides a Transaction method. 
+- Gorm also provides a Transaction method.
 
 ```go
 if err := db.Transaction(func(tx *gorm.DB) error {
@@ -293,7 +292,7 @@ if err := db.Transaction(func(tx *gorm.DB) error {
 
   return nil
 }); err != nil{
-  return 
+  return
 }
 ```
 
@@ -327,6 +326,17 @@ func (u *User) AfterCreate(tx *gorm.DB) (err error) {
 ```
 
 - Hook will be called automatically when calling CRUD. If it returns an error, GORM will stop subsequent operations and rollback the transaction.
+
+### Plugins
+
+|            plugins            |               links               |
+| :---------------------------: | :-------------------------------: |
+|        Code Generation        |      github.com/go-gorm/gen       |
+| Optimizer/Index/Comment Hints |     github.com/go-gorm/hints      |
+|        Sharding Tables        |    github.com/go-gorm/sharding    |
+|        Optimistic Lock        | github.com/go-gorm/optimisticlock |
+|     Read/Write Splitting      |   github.com/go-gorm/dbresolver   |
+|         OpenTelemetry         | github.com/go-gorm/opentelemetry  |
 
 ## RPC - Kitex
 
