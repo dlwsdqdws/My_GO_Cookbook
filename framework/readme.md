@@ -2,6 +2,7 @@
 
 - [Framework](#framework)
   - [ORM - Gorm](#orm---gorm)
+    - [Object–relational Mapping](#objectrelational-mapping)
     - [Installation](#installation)
     - [Connect to Database](#connect-to-database)
     - [CRUD](#crud)
@@ -13,9 +14,16 @@
     - [Hook](#hook)
     - [Plugins](#plugins)
   - [RPC - Kitex](#rpc---kitex)
+    - [Remote Procedure Call](#remote-procedure-call)
+    - [Installation](#installation-1)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
+
+### Object–relational Mapping
+
+- Object–relational mapping (ORM) is a programming technique for converting data between a relational database and the heap of an object-oriented programming language (Wikipedia), like Mybatis in java.
+- Using ORM, we can associate a data table in database with a certain class/struct, and by modifying the class/struct instance, we can easily CRUD the database without using SQL statements.
 
 ### Installation
 
@@ -183,7 +191,7 @@ db.Model(&product).Updates(map[string]interface{}{"Price": 200, "activated": fal
 
 ```go
 // only update price even though multiple columns in the map
-db.Model(&Product{ID : 110}).Select("Price").Updates(map[string]interface{}{"Price": 200, "activated": false})
+db.Model(&Product{ID : 111}).Select("Price").Updates(map[string]interface{}{"Price": 200, "activated": false})
 ```
 
 - SQL
@@ -339,5 +347,16 @@ func (u *User) AfterCreate(tx *gorm.DB) (err error) {
 |         OpenTelemetry         | github.com/go-gorm/opentelemetry  |
 
 ## RPC - Kitex
+
+### Remote Procedure Call
+
+- 
+
+### Installation
+
+```go
+go install github.com/cloudwego/kitex/tool/cmd/kitex@latest
+go install github.com/cloudwego/thriftgo@latest
+```
 
 ## HTTP - Hertz
