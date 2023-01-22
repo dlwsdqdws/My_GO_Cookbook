@@ -1,3 +1,5 @@
+# Framework
+
 - [Framework](#framework)
   - [ORM - Gorm](#orm---gorm)
     - [Installation](#installation)
@@ -6,11 +8,10 @@
       - [Create](#create)
       - [Read](#read)
     - [Update](#update)
+    - [delete](#delete)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
 
-
-# Framework
 
 ## ORM - Gorm
 
@@ -144,7 +145,7 @@ db.Where("created_at BETWEEN ? AND ?", lastWeek, today).Find(&products)
 // SELECT * FROM products WHERE created_at BETWEEN '2000-01-01 00:00:00' AND '2000-01-08 00:00:00';
 ```
 
-- When using a struct as an inquiries, the zero values(eg, 0, false) will not be used. If zero values is needed, we can use `map` as a inquery.
+- When using a struct as an inquiry, the zero values(eg, 0, false) will not be used. If zero values is needed, we can use `map` as a inquery.
 
 ```go
 db.Where(map[string]interface{}{"name": "jinzhu", "age": 0}).Find(&products)
@@ -159,6 +160,14 @@ db.Where([]int64{20, 21, 22}).Find(&products)
 ```
 
 ### Update
+
+- Single
+
+```go
+db.Model(&product).Update("Price", 200)
+```
+
+### delete
 
 ## RPC - Kitex
 

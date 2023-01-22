@@ -1,10 +1,9 @@
+# Dependency Management
+
 - [Dependency Management](#dependency-management)
   - [GO Path](#go-path)
   - [GO Vendor](#go-vendor)
   - [GO Module](#go-module)
-
-
-# Dependency Management
 
 ## GO Path
 

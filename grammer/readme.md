@@ -1,3 +1,5 @@
+# Basic Grammer
+
 - [Basic Grammer](#basic-grammer)
   - [Variable](#variable)
   - [Control Structures](#control-structures)
@@ -24,9 +26,6 @@
   - [JSON](#json)
   - [Time](#time)
   - [Processes](#processes)
-
-
-# Basic Grammer
 
 ## Variable
 

@@ -1,12 +1,11 @@
+# Concurrent and Parallel
+
 - [Concurrent and Parallel](#concurrent-and-parallel)
   - [Goroutine](#goroutine)
   - [Channel](#channel)
   - [Synchronization](#synchronization)
     - [Mutex](#mutex)
     - [WaitGroup](#waitgroup)
-
-
-# Concurrent and Parallel
 
 ## Goroutine
 

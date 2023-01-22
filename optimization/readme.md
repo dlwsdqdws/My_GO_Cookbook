@@ -1,3 +1,5 @@
+# Code Optimization
+
 - [Code Optimization](#code-optimization)
   - [Go Style](#go-style)
     - [Standard](#standard)
@@ -18,7 +20,6 @@
     - [Atomic Package](#atomic-package)
 
 
-# Code Optimization
 
 ## Go Style
 
