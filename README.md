@@ -18,13 +18,23 @@
 
 ## Concurrent and Parallel
 
+- Turn to [Concurrent and Parallel](/concurrent_parallel/)
+
 ## Dependency Management
+
+- Turn to [Dependency Management](/dependency_management/)
 
 ## Test
 
+- Turn to [Test](/test/)
+
 ## Code Optimization
 
+- Turn to [Code Optimization](/optimization/)
+
 ## Framework
+
+- Turn to [Framework](/framework/)
 
 ## Useful Tools
 
