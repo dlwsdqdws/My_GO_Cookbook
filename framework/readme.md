@@ -299,6 +299,35 @@ if err := db.Transaction(func(tx *gorm.DB) error {
 
 ### Hook
 
+- Hook are functions called before or after CRUD operations.
+
+```go
+type User struct {
+    ID      int64
+    Name    string `gorm:"default:galeone"`
+    Age     string `gorm:"default:18"`
+}
+​
+type Email struct {
+    ID      int64
+    Name    string
+    Email   string
+}
+​
+func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
+    if u.Age < 0 {
+        return errors.New("can't save invalid data")
+    }
+    return nil;
+}
+​
+func (u *User) AfterCreate(tx *gorm.DB) (err error) {
+    return tx.Create(&Email{ID: u.ID, Email: i.Name + "@***.com"}).Error
+}
+```
+
+- Hook will be called automatically when calling CRUD. If it returns an error, GORM will stop subsequent operations and rollback the transaction.
+
 ## RPC - Kitex
 
 ## HTTP - Hertz
