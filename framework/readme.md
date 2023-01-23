@@ -16,6 +16,7 @@
   - [RPC - Kitex](#rpc---kitex)
     - [Remote Procedure Call](#remote-procedure-call)
     - [Installation](#installation-1)
+    - [IDL](#idl)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
@@ -350,13 +351,34 @@ func (u *User) AfterCreate(tx *gorm.DB) (err error) {
 
 ### Remote Procedure Call
 
-- 
+- Remote Procedure Call(RPC) is a software communication protocol that one program can use to request a service from a program located in another computer on a network without having to understand the network's details.
 
 ### Installation
 
 ```go
 go install github.com/cloudwego/kitex/tool/cmd/kitex@latest
 go install github.com/cloudwego/thriftgo@latest
+```
+
+### IDL
+
+- Interface definition language (IDL) allows a program or object written in one language to communicate with another program written in an unknown language. We can use IDL to support RPC's message transimit definition. 
+- Kitex supports [thrift](https://thrift.apache.org/docs/idl) and [proto3](https://developers.google.com/protocol-buffers/docs/proto3) by default, and it uses the extended thrift as the underlying transport protocol.
+
+```go
+namespace go api
+​
+struct Request {
+    1: string message
+}
+​
+struct Resposne {
+    1: string message
+}
+​
+service Echo {
+    Reponse echo(1: Request req)
+}
 ```
 
 ## HTTP - Hertz
