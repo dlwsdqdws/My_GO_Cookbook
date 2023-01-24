@@ -15,9 +15,12 @@
     - [Plugins](#plugins)
   - [RPC - Kitex](#rpc---kitex)
     - [Remote Procedure Call](#remote-procedure-call)
-    - [Installation](#installation-1)
-    - [IDL](#idl)
-    - [echo](#echo)
+    - [Server Side](#server-side)
+      - [Installation](#installation-1)
+      - [IDL](#idl)
+      - [echo](#echo)
+      - [handler](#handler)
+    - [Client Side](#client-side)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
@@ -354,14 +357,16 @@ func (u *User) AfterCreate(tx *gorm.DB) (err error) {
 
 - Remote Procedure Call(RPC) is a software communication protocol that one program can use to request a service from a program located in another computer on a network without having to understand the network's details.
 
-### Installation
+### Server Side
+
+#### Installation
 
 ```go
 go install github.com/cloudwego/kitex/tool/cmd/kitex@latest
 go install github.com/cloudwego/thriftgo@latest
 ```
 
-### IDL
+#### IDL
 
 - Interface definition language (IDL) allows a program or object written in one language to communicate with another program written in an unknown language. We can use IDL to support RPC's message transimit definition. 
 - Kitex supports [thrift](https://thrift.apache.org/docs/idl) and [proto3](https://developers.google.com/protocol-buffers/docs/proto3) by default, and it uses the extended thrift as the underlying transport protocol.
@@ -382,7 +387,7 @@ service Echo {
 }
 ```
 
-### echo
+#### echo
 
 - Generate echo service code. `-module` indicates the go module name of the generated project, `-service` indicates that we want to generate a server project, `example` is the name of the service, `echo.thrift` is IDL file.
 
@@ -411,5 +416,38 @@ kitex -module exmaple -service example echo.thrift
     |-- bootstrap.sh
     `-- settings.py
 ```
+
+#### handler
+
+```go
+package main
+​
+import (
+        "context"
+        api "exmaple/kitex_gen/api"
+)
+​
+// EchoImpl implements the last service interface defined in the IDL.
+type EchoImpl struct{}
+​
+// Echo implements the EchoImpl interface.
+func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
+        // TODO: Your code here...
+        return
+}
+```
+
+- Run `sh output/bootstrap.sh` to start the server. 
+- Listening on Port 8888 by default. To modify the running port, open `main.go` and specify configuration parameters for the `NewServer` function.
+
+```go
+ addr, _ := net.ResolveTCPAddr("tcp", "127.0.0.1:9999")
+  svr := api.NewServer(new(EchoImpl), server.WithServiceAddr(addr))
+```
+
+
+### Client Side
+
+
 
 ## HTTP - Hertz
