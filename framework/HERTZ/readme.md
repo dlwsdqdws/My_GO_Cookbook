@@ -36,6 +36,25 @@ h.Spin()
 
 - Listening on Port 8080 by default.
 
+- IDL can be used.
+
+```go
+namespace go hello.example
+
+struct HelloReq{
+    // binding <-> api.query
+    1 : string Name(api.query = "name");
+}
+
+struct HelloResp{
+    1 : string RespBody;
+}
+
+service HelloService {
+    HelloResp HelloMethod(1 : HelloReq request)(api.get = "/hello");
+}
+```
+
 ### Routing
 
 - Priority: **Static Route** > **Param Route** > **Wildcard Route**
@@ -220,4 +239,4 @@ if err != nil {
 fmt.Printf("status=%v body=%v\n", status, string(body))
 ```
 
-- More examples please refer to www.github.com/cloudwego/gertz-examples#client
+- More examples please refer to www.github.com/cloudwego/hertz-examples#client
