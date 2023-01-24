@@ -28,6 +28,9 @@
       - [Service Discovery](#service-discovery)
     - [Plugins](#plugins-1)
   - [HTTP - Hertz](#http---hertz)
+    - [Server Side](#server-side-1)
+      - [Installation](#installation-2)
+      - [Create a Server](#create-a-server)
 
 ## ORM - Gorm
 
@@ -570,3 +573,26 @@ func main(){
 |    polaris    |      www.github.com/kitex-contrib/polaris       |
 
 ## HTTP - Hertz
+
+### Server Side
+
+#### Installation
+
+```go
+go install github.com/cloudwego/hertz/cmd/hz@latest
+```
+
+#### Create a Server
+
+```go
+// Default() or New()
+h := server.Default(server.WithHostPoerts("127.0.0.1:8080"))
+// two contexts
+h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+      ctx.JSON(consts.StatusOK, utils.H{"message": "pong"})
+})
+h.Spin()
+```
+
+- Listening on Port 8080 by default.
+
