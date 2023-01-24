@@ -23,6 +23,9 @@
     - [Client Side](#client-side)
       - [Create a Client](#create-a-client)
       - [Send a Request](#send-a-request)
+    - [Service Registry and Discovery](#service-registry-and-discovery)
+      - [Service Registry](#service-registry)
+      - [Service Discovery](#service-discovery)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
@@ -370,7 +373,7 @@ go install github.com/cloudwego/thriftgo@latest
 
 #### IDL
 
-- Interface definition language (IDL) allows a program or object written in one language to communicate with another program written in an unknown language. We can use IDL to support RPC's message transimit definition. 
+- Interface definition language (IDL) allows a program or object written in one language to communicate with another program written in an unknown language. We can use IDL to support RPC's message transimit definition.
 - Kitex supports [thrift](https://thrift.apache.org/docs/idl) and [proto3](https://developers.google.com/protocol-buffers/docs/proto3) by default, and it uses the extended thrift as the underlying transport protocol.
 
 ```go
@@ -440,14 +443,13 @@ func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respon
 }
 ```
 
-- Run `sh output/bootstrap.sh` to start the server. 
+- Run `sh output/bootstrap.sh` to start the server.
 - Listening on Port 8888 by default. To modify the running port, open `main.go` and specify configuration parameters for the `NewServer` function. For more information, please refer to https://juejin.cn/post/7190660194014068796#heading-9.
 
 ```go
  addr, _ := net.ResolveTCPAddr("tcp", "127.0.0.1:9999")
   svr := api.NewServer(new(EchoImpl), server.WithServiceAddr(addr))
 ```
-
 
 ### Client Side
 
@@ -482,5 +484,77 @@ if err != nil {
 }
 log.Println(resp)
 ```
+
+### Service Registry and Discovery
+
+#### Service Registry
+
+- Service Registry: service process registers its information in the registry, usually including host, port number, protocol.
+
+```go
+type HelloImpl struct{}
+
+// implement HelloImpl function
+func (h *HelloImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error){
+  resp = &api.Response{
+    Message : req.Message,
+  }
+
+  return
+}
+
+func main(){
+  r, err := etcd.NewEtcdRegistry([]string("127.0.0.1:2379"))
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  // init server
+  server := hello.NewServer(
+    new(HelloImpl),
+    server.WithRegistry(r),
+    server.WithServerBasicInfo(&rpcinfo.EndPointBasicInfo{
+      ServiceName : "Hello",
+    }))
+
+  err = server.Run()
+  if err != nil{
+    log.Fatal(err)
+  }
+}
+```
+
+#### Service Discovery
+
+- Service Discovery: client process initiates a query to the registry center to obtain service information.
+
+```go
+func main(){
+  e,err := etcd.NewEtcdResolver([]string("127.0.0.1:2379"))
+  if err!= nil{
+    log.Fatal(err)
+  }
+
+  // The first parameter is the service name
+  clint := hello.MustNewClient("Hello", client.WithResolver(r))
+
+  for {
+    ctx,cancel := context.WithTimeout(context.Background(), time.Second*3)
+    resp,err := client.Echo(ctx, &api.Request{
+      Message : "Hello"
+    })
+
+    cancel()
+    if err != nil{
+      log.Fatal(err)
+    }
+
+    log.Println(resp)
+    time.Sleep(time.Second)
+  }
+}
+```
+
+- For more examples, please refer to github.com/kitex-contrib/registry-etcd/tree/main/example
 
 ## HTTP - Hertz
