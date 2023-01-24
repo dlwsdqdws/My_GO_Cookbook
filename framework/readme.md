@@ -21,6 +21,8 @@
       - [echo](#echo)
       - [handler](#handler)
     - [Client Side](#client-side)
+      - [Create a Client](#create-a-client)
+      - [Send a Request](#send-a-request)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
@@ -372,6 +374,7 @@ go install github.com/cloudwego/thriftgo@latest
 - Kitex supports [thrift](https://thrift.apache.org/docs/idl) and [proto3](https://developers.google.com/protocol-buffers/docs/proto3) by default, and it uses the extended thrift as the underlying transport protocol.
 
 ```go
+// echo.thrift
 namespace go api
 ​
 struct Request {
@@ -438,7 +441,7 @@ func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respon
 ```
 
 - Run `sh output/bootstrap.sh` to start the server. 
-- Listening on Port 8888 by default. To modify the running port, open `main.go` and specify configuration parameters for the `NewServer` function.
+- Listening on Port 8888 by default. To modify the running port, open `main.go` and specify configuration parameters for the `NewServer` function. For more information, please refer to https://juejin.cn/post/7190660194014068796#heading-9.
 
 ```go
  addr, _ := net.ResolveTCPAddr("tcp", "127.0.0.1:9999")
@@ -448,6 +451,36 @@ func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respon
 
 ### Client Side
 
+#### Create a Client
 
+```go
+import "example/kitex_gen/api/echo"
+import "github.com/cloudwego/kitex/client"
+...
+c, err := echo.NewClient("example", client.WithHostPorts("0.0.0.0:8888"))
+if err != nil {
+  log.Fatal(err)
+}
+```
+
+- The first parameter "example" is the service name, and the second parameter is options, which are used to pass in [parameters](https://www.cloudwego.io/zh/docs/kitex/tutorials/basic-feature/).
+
+#### Send a Request
+
+```go
+import "example/kitex_gen/api"
+
+// create a request named req
+req := &api.Request{Message: "my request"}
+
+// context.Context is used to transmit information or control some actions of this call
+// The second parameter is the request name for this call
+// The third parameter is the options, https://www.cloudwego.io/zh/docs/kitex/tutorials/basic-feature
+resp, err := c.Echo(context.Background(), req, callopt.WithRPCTimeout(3*time.Second))
+if err != nil {
+  log.Fatal(err)
+}
+log.Println(resp)
+```
 
 ## HTTP - Hertz
