@@ -17,6 +17,7 @@
     - [Remote Procedure Call](#remote-procedure-call)
     - [Installation](#installation-1)
     - [IDL](#idl)
+    - [echo](#echo)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
@@ -379,6 +380,36 @@ struct Resposne {
 service Echo {
     Reponse echo(1: Request req)
 }
+```
+
+### echo
+
+- Generate echo service code. `-module` indicates the go module name of the generated project, `-service` indicates that we want to generate a server project, `example` is the name of the service, `echo.thrift` is IDL file.
+
+```go
+kitex -module exmaple -service example echo.thrift
+```
+
+- The generated project structure is as follows, among which, `build.sh` is the build script(code -> binary file), `kitex_gen` is the generated code (including service/client code) related to the IDL content, `main.go` is the program entry, and `handler.go` is to implement the methods defined by the IDL service in this file.
+
+```go
+.
+|-- build.sh
+|-- echo.thrift
+|-- handler.go
+|-- kitex_gen
+|   `-- api
+|       |-- echo
+|       |   |-- client.go
+|       |   |-- echo.go
+|       |   |-- invoker.go
+|       |   `-- server.go
+|       |-- echo.go
+|       `-- k-echo.go
+|-- main.go
+`-- script
+    |-- bootstrap.sh
+    `-- settings.py
 ```
 
 ## HTTP - Hertz
