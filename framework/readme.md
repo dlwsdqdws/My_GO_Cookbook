@@ -26,6 +26,7 @@
     - [Service Registry and Discovery](#service-registry-and-discovery)
       - [Service Registry](#service-registry)
       - [Service Discovery](#service-discovery)
+    - [Plugins](#plugins-1)
   - [HTTP - Hertz](#http---hertz)
 
 ## ORM - Gorm
@@ -347,14 +348,14 @@ func (u *User) AfterCreate(tx *gorm.DB) (err error) {
 
 ### Plugins
 
-|            plugins            |               links               |
-| :---------------------------: | :-------------------------------: |
-|        Code Generation        |      github.com/go-gorm/gen       |
-| Optimizer/Index/Comment Hints |     github.com/go-gorm/hints      |
-|        Sharding Tables        |    github.com/go-gorm/sharding    |
-|        Optimistic Lock        | github.com/go-gorm/optimisticlock |
-|     Read/Write Splitting      |   github.com/go-gorm/dbresolver   |
-|         OpenTelemetry         | github.com/go-gorm/opentelemetry  |
+|            plugins            |                 links                 |
+| :---------------------------: | :-----------------------------------: |
+|        Code Generation        |      www.github.com/go-gorm/gen       |
+| Optimizer/Index/Comment Hints |     www.github.com/go-gorm/hints      |
+|        Sharding Tables        |    www.github.com/go-gorm/sharding    |
+|        Optimistic Lock        | www.github.com/go-gorm/optimisticlock |
+|     Read/Write Splitting      |   www.github.com/go-gorm/dbresolver   |
+|         OpenTelemetry         | www.github.com/go-gorm/opentelemetry  |
 
 ## RPC - Kitex
 
@@ -555,6 +556,17 @@ func main(){
 }
 ```
 
-- For more examples, please refer to github.com/kitex-contrib/registry-etcd/tree/main/example
+- For more examples, please refer to www.github.com/kitex-contrib/registry-etcd/tree/main/example
+
+### Plugins
+
+|    plugins    |                      links                      |
+| :-----------: | :---------------------------------------------: |
+|      XDS      |        www.github.com/kitex-contrib/xds         |
+| opentelemetry | www.github.com/kitex-contrib/obs-opentelemetry  |
+|     ETCD      |   www.github.com/kitex-contrib/registry-etcd    |
+|     Nacos     |   www.github.com/kitex-contrib/registry-nacos   |
+|   Zookeeper   | www.github.com/kitex-contrib/registry-zookeeper |
+|    polaris    |    www.github.com/cloudwego/kitex-examples/     |
 
 ## HTTP - Hertz
