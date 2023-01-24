@@ -567,6 +567,6 @@ func main(){
 |     ETCD      |   www.github.com/kitex-contrib/registry-etcd    |
 |     Nacos     |   www.github.com/kitex-contrib/registry-nacos   |
 |   Zookeeper   | www.github.com/kitex-contrib/registry-zookeeper |
-|    polaris    |    www.github.com/cloudwego/kitex-examples/     |
+|    polaris    |      www.github.com/kitex-contrib/polaris       |
 
 ## HTTP - Hertz
