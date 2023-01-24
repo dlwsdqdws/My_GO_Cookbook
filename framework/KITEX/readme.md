@@ -1,7 +1,6 @@
 # Kitex
 
 - [Kitex](#kitex)
-  - [Remote Procedure Call](#remote-procedure-call)
   - [Server Side](#server-side)
     - [Installation](#installation)
     - [IDL](#idl)
@@ -15,10 +14,6 @@
     - [Service Discovery](#service-discovery)
   - [Plugins](#plugins)
 
-
-## Remote Procedure Call
-
-- Remote Procedure Call(RPC) is a software communication protocol that one program can use to request a service from a program located in another computer on a network without having to understand the network's details.
 
 ## Server Side
 

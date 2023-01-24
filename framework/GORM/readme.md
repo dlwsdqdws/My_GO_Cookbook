@@ -1,7 +1,6 @@
 # GORM
 
 - [GORM](#gorm)
-  - [Object–relational Mapping](#objectrelational-mapping)
   - [Installation](#installation)
   - [Connect to Database](#connect-to-database)
   - [CRUD](#crud)
@@ -12,12 +11,6 @@
   - [Transaction](#transaction)
   - [Hook](#hook)
   - [Plugins](#plugins)
-
-
-## Object–relational Mapping
-
-- Object–relational mapping (ORM) is a programming technique for converting data between a relational database and the heap of an object-oriented programming language (Wikipedia), like Mybatis in java.
-- Using ORM, we can associate a data table in database with a certain class/struct, and by modifying the class/struct instance, we can easily CRUD the database without using SQL statements.
 
 ## Installation
 
