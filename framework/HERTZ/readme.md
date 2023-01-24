@@ -13,6 +13,7 @@
     - [Parameter Binding](#parameter-binding)
     - [Middleware](#middleware)
   - [Client Side](#client-side)
+  - [Plugins](#plugins)
 
 ## Server Side
 
@@ -240,3 +241,15 @@ fmt.Printf("status=%v body=%v\n", status, string(body))
 ```
 
 - More examples please refer to www.github.com/cloudwego/hertz-examples#client
+
+## Plugins
+
+|    plugins    |                     links                      |
+| :-----------: | :--------------------------------------------: |
+|     HTTP2     |       www.github.com/hertz-contrib/http2       |
+| opentelemetry | www.github.com/hertz-contrib/obs-opentelemetry |
+|     i18n      |       www.github.com/hertz-contrib/i18n        |
+| Reverse Proxy |   www.github.com/hertz-contrib/reverseproxy    |
+|      JWT      |        www.github.com/hertz-contrib/jwt        |
+|   Websocket   |     www.github.com/hertz-contrib/websocket     |
+
