@@ -32,6 +32,10 @@
       - [Installation](#installation-2)
       - [Create a Server](#create-a-server)
       - [Router](#router)
+        - [Route Methods](#route-methods)
+        - [Route Group](#route-group)
+        - [Param Route](#param-route)
+        - [wildcard route](#wildcard-route)
 
 ## ORM - Gorm
 
@@ -599,6 +603,8 @@ h.Spin()
 
 #### Router
 
+##### Route Methods
+
 - Hertz provides `GET`, `POST`, `PUT`, `DELETE` and other methods. `ANY` can be used to register all HTTP Method methods. `Handle` can be used to register custom HTTP Method methods.
 
 ```go
@@ -633,6 +639,8 @@ func RegisterRoute(h *server.Hertz){
 }
 ```
 
+##### Route Group
+
 - Hertz provides **Route Group** to support the routing grouping function, and middleware can also be registered to the routing group.
 
 ```go
@@ -653,3 +661,12 @@ v2 := h.Group("/v2"){
     })
 }
 ```
+##### Param Route
+
+- Hertz supports setting up routes with named parameters like `:name`, and named parameters only match a single path segment, like `/user/gordon` and `/user/you`, not `/user/profile` or `/user/`.
+
+```go
+
+```
+
+##### wildcard route
