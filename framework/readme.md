@@ -31,6 +31,7 @@
     - [Server Side](#server-side-1)
       - [Installation](#installation-2)
       - [Create a Server](#create-a-server)
+      - [Router](#router)
 
 ## ORM - Gorm
 
@@ -594,5 +595,40 @@ h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
 h.Spin()
 ```
 
-- Listening on Port 8080 by default.
+- Listening on Port 8080 by default. 
 
+#### Router
+
+- Hertz provides `GET`, `POST`, `PUT`, `DELETE` methods. `ANY` can be used to register all HTTP Method methods. `Handle` can be used to register custom HTTP Method methods.
+
+```go
+func RegisterRoute(h *server.Hertz){
+  h.GET("/get", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "get")
+	})
+	h.POST("/post", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "post")
+	})
+	h.PUT("/put", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "put")
+	})
+	h.DELETE("/delete", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "delete")
+	})
+	h.PATCH("/patch", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "patch")
+	})
+	h.HEAD("/head", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "head")
+	})
+	h.OPTIONS("/options", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "options")
+	})
+  	h.Any("/ping_any", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "any")
+	})
+	h.Handle("LOAD", "/load", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "load")
+	})
+}
+```
