@@ -1,11 +1,10 @@
 # Framework
 
-- Demo : https://github.com/cloudwego/biz-demo/tree/main/easy_note
-
 - [Framework](#framework)
   - [ORM - Gorm](#orm---gorm)
   - [RPC - Kitex](#rpc---kitex)
   - [HTTP - Hertz](#http---hertz)
+  - [Example](#example)
 
 ## ORM - Gorm
 
@@ -23,3 +22,7 @@
 ## HTTP - Hertz
 
 - Turn to [Hertz](/framework/HERTZ/)
+
+## Example
+
+- https://github.com/cloudwego/biz-demo/tree/main/easy_note
