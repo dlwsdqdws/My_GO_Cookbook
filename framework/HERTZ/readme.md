@@ -12,6 +12,7 @@
       - [Wildcard Route](#wildcard-route)
     - [Parameter Binding](#parameter-binding)
     - [Middleware](#middleware)
+  - [Client Side](#client-side)
 
 ## Server Side
 
@@ -189,3 +190,34 @@ func main() {
 ```
 
 - Can use `Abort()`, `AbortWithMsg(msg string, statusCode int)`, `AbortWithStatus(code int)` terminates the execution of the middleware call chain.
+
+## Client Side
+
+- Hertz provides HTTP Client to help users send HTTP requests.
+
+```go
+c, err := client.NewClient()
+if err != nil {
+    return
+}
+
+// send http get request
+// Get parameters : context, dst, url
+status, body, err := c.Get(context.Background(), nil, "https://www.example.com")
+if err != nil {
+    return
+}
+fmt.Printf("status=%v body=%v\n", status, string(body))
+​
+// send http post request
+var postArgs protocol.Args
+postArgs.Set("arg","a") // Set post args
+// Post parameters : context, dst, url
+status, body, err = c.Post(context.Background(), nil, "https://www.example.com", &postArgs)
+if err != nil {
+    return
+}
+fmt.Printf("status=%v body=%v\n", status, string(body))
+```
+
+- More examples please refer to www.github.com/cloudwego/gertz-examples#client
