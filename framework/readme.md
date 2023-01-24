@@ -32,7 +32,7 @@
       - [Installation](#installation-2)
       - [Create a Server](#create-a-server)
       - [Router](#router)
-        - [Route Methods](#route-methods)
+        - [Static Route](#static-route)
         - [Route Group](#route-group)
         - [Param Route](#param-route)
         - [wildcard route](#wildcard-route)
@@ -603,7 +603,9 @@ h.Spin()
 
 #### Router
 
-##### Route Methods
+- Priority: **Static Route** > **Param Route** > **Wildcard Route**
+
+##### Static Route
 
 - Hertz provides `GET`, `POST`, `PUT`, `DELETE` and other methods. `ANY` can be used to register all HTTP Method methods. `Handle` can be used to register custom HTTP Method methods.
 
@@ -666,7 +668,16 @@ v2 := h.Group("/v2"){
 - Hertz supports setting up routes with named parameters like `:name`, and named parameters only match a single path segment, like `/user/gordon` and `/user/you`, not `/user/profile` or `/user/`.
 
 ```go
-
+h.GET("/hertz/:version", func(ctx context.Context, c *app.RequestContext) {
+        version := c.Param("version")
+        c.String(consts.StatusOK, "Hello %s", version)
+    })
 ```
 
 ##### wildcard route
+
+- Hertz supports setting routes with wildcard parameters like `*path`, and wildcard parameters will match everything containing such segment.
+
+```go
+
+```
