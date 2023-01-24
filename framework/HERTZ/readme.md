@@ -6,7 +6,8 @@
     - [Create a Server](#create-a-server)
     - [Routing](#routing)
       - [Static Route](#static-route)
-      - [Route Group](#route-group)
+        - [Methods](#methods)
+        - [Route Group](#route-group)
       - [Param Route](#param-route)
       - [Wildcard Route](#wildcard-route)
     - [Parameter Binding](#parameter-binding)
@@ -40,11 +41,13 @@ h.Spin()
 
 #### Static Route
 
+##### Methods
+
 - Hertz provides `GET`, `POST`, `PUT`, `DELETE` and other methods. `ANY` can be used to register all HTTP Method methods. `Handle` can be used to register custom HTTP Method methods.
 
 ```go
 func RegisterRoute(h *server.Hertz){
-  h.GET("/get", func(ctx context.Context, c *app.RequestContext) {
+    h.GET("/get", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "get")
 	})
 	h.POST("/post", func(ctx context.Context, c *app.RequestContext) {
@@ -65,7 +68,7 @@ func RegisterRoute(h *server.Hertz){
 	h.OPTIONS("/options", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "options")
 	})
-  h.Any("/ping_any", func(ctx context.Context, c *app.RequestContext) {
+    h.Any("/ping_any", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "any")
 	})
 	h.Handle("LOAD", "/load", func(ctx context.Context, c *app.RequestContext) {
@@ -74,7 +77,7 @@ func RegisterRoute(h *server.Hertz){
 }
 ```
 
-#### Route Group
+##### Route Group
 
 - Hertz provides **Route Group** to support the routing grouping function, and middleware can also be registered to the routing group.
 
@@ -127,3 +130,33 @@ h.POST("/hertz/:version/*action", func(ctx context.Context, c *app.RequestContex
 
 ### Parameter Binding
 
+- Hertz provides `Bind`, `Validate`, `BindAndValidate` methods for binding and validate parameters.
+
+```go
+type Args struct{
+    Query string `query:"query"`
+    QuerySlice []string `query:"q"`
+    Path string `path:"path"`
+    Header string `header:"header"`
+    Form string `form:"form"`
+    Json string `json:"json`
+    // validate
+    Vd int `query:"vd" vd:"$==0||$==1"`
+}
+
+func main(){
+    h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
+
+    h.POST("v:path/bind", func(ctx context.Context, c *app.RequestContext){
+        var arg Args
+        // pass by reference
+        err := c.BindAndValidate(&arg)
+        if err != nil{
+            panic(err)
+        }
+        fmt.Println(arg)
+    })
+
+    h.Spin()
+}
+```
