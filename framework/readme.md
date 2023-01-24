@@ -595,11 +595,11 @@ h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
 h.Spin()
 ```
 
-- Listening on Port 8080 by default. 
+- Listening on Port 8080 by default.
 
 #### Router
 
-- Hertz provides `GET`, `POST`, `PUT`, `DELETE` methods. `ANY` can be used to register all HTTP Method methods. `Handle` can be used to register custom HTTP Method methods.
+- Hertz provides `GET`, `POST`, `PUT`, `DELETE` and other methods. `ANY` can be used to register all HTTP Method methods. `Handle` can be used to register custom HTTP Method methods.
 
 ```go
 func RegisterRoute(h *server.Hertz){
@@ -624,11 +624,32 @@ func RegisterRoute(h *server.Hertz){
 	h.OPTIONS("/options", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "options")
 	})
-  	h.Any("/ping_any", func(ctx context.Context, c *app.RequestContext) {
+  h.Any("/ping_any", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "any")
 	})
 	h.Handle("LOAD", "/load", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "load")
 	})
+}
+```
+
+- Hertz provides **Route Group** to support the routing grouping function, and middleware can also be registered to the routing group.
+
+```go
+v1 := h.Group("/v1"){
+    v1.GET("/get", func(ctx context.Context, c *app.RequestContext) {
+        c.String(consts.StatusOK, "get")
+    })
+    v1.POST("/post", func(ctx context.Context, c *app.RequestContext) {
+        c.String(consts.StatusOK, "post")
+    })
+}
+v2 := h.Group("/v2"){
+    v2.PUT("/put", func(ctx context.Context, c *app.RequestContext) {
+        c.String(consts.StatusOK, "put")
+    })
+    v2.DELETE("/delete", func(ctx context.Context, c *app.RequestContext) {
+        c.String(consts.StatusOK, "delete")
+    })
 }
 ```
