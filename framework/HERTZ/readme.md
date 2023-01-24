@@ -11,7 +11,7 @@
       - [Param Route](#param-route)
       - [Wildcard Route](#wildcard-route)
     - [Parameter Binding](#parameter-binding)
-
+    - [Middleware](#middleware)
 
 ## Server Side
 
@@ -99,6 +99,7 @@ v2 := h.Group("/v2"){
     })
 }
 ```
+
 #### Param Route
 
 - Hertz supports setting up routes with named parameters like `:name`, and named parameters only match a single path segment, like `/user/gordon` and `/user/you`, not `/user/profile` or `/user/`.
@@ -160,3 +161,31 @@ func main(){
     h.Spin()
 }
 ```
+
+### Middleware
+
+- Server-side middleware is a function in the HTTP request-response cycle that provides a convenient mechanism to inspect and filter HTTP requests entering the application, such as logging each request or enabling CORS.
+- Middleware can be executed before or after the request passes deeper into the logic.
+
+```go
+func MyMiddleware() app.HandlerFunc {
+  return func(ctx context.Context, c *app.RequestContext) {
+    // pre-handle
+    // ...
+    c.Next(ctx) // call the next middleware(handler)
+    // post-handle
+    // ...
+  }
+}
+​
+func main() {
+    h := server.Default(server.WithHostPort("127.0.0.1:8080"))
+    h.Use(MyMiddleware())  // Global Middleware
+    h.Get("/middleware",func(ctx context.Context, c *app.RequestContext) {
+        c.String(consts.StatusOK, "Hello hertz!")
+    })
+    h.Spin()
+}
+```
+
+- Can use `Abort()`, `AbortWithMsg(msg string, statusCode int)`, `AbortWithStatus(code int)` terminates the execution of the middleware call chain.
