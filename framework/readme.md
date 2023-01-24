@@ -31,11 +31,11 @@
     - [Server Side](#server-side-1)
       - [Installation](#installation-2)
       - [Create a Server](#create-a-server)
-      - [Router](#router)
+      - [Routing](#routing)
         - [Static Route](#static-route)
         - [Route Group](#route-group)
         - [Param Route](#param-route)
-        - [wildcard route](#wildcard-route)
+        - [Wildcard Route](#wildcard-route)
 
 ## ORM - Gorm
 
@@ -601,7 +601,7 @@ h.Spin()
 
 - Listening on Port 8080 by default.
 
-#### Router
+#### Routing
 
 - Priority: **Static Route** > **Param Route** > **Wildcard Route**
 
@@ -674,10 +674,20 @@ h.GET("/hertz/:version", func(ctx context.Context, c *app.RequestContext) {
     })
 ```
 
-##### wildcard route
+##### Wildcard Route
 
-- Hertz supports setting routes with wildcard parameters like `*path`, and wildcard parameters will match everything containing such segment.
+- Hertz supports setting routes with wildcard parameters like `*path`, and wildcard parameters will match everything containing such segment, like `/src/`, `/src/somefile.go`, `/src/subdir/somefile.go`.
 
 ```go
+h.GET("/hertz/:version/*action", func(ctx context.Context, c *app.RequestContext) {
+        version := c.Param("version")
+        action := c.Param("action")
+        message := version + " is " + action
+        c.String(consts.StatusOK, message)
+    })
 
+h.POST("/hertz/:version/*action", func(ctx context.Context, c *app.RequestContext){
+  //c.FullPath() == "/hertz/:version/*action"
+  c.String(consts.StatusOK, c.c.FullPath())
+})
 ```
