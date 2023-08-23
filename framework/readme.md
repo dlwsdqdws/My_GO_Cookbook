@@ -73,17 +73,17 @@ At this layer, an appropriate transport protocol is chosen to ensure reliable da
 
 <p align="center"><img src="../static/img/framework/rpc/tpl_example.png" alt="RPC Process" width="500"/></p>
 
-- Special Fields
+1. Special Fields
 
-1. Terminator
+- Terminator
 
 eg: Message + \r\n + Message + \r\n
 
-2. Variable Length
+- Variable Length
 
 eg: Length + Message Body + Length + Message Body
 
-- Process
+2. Process
 
 Peek -> Magic Number (To know which protocol is used) -> Peek -> PayloadCodeC (To know encode method) -> Peek -> Payload
 
@@ -191,6 +191,8 @@ h.Spin()
 ```
 
 ### Process
+
+<p align="center"><img src="../static/img/framework/http/http_process.png alt="RPC Process" width="500"/></p>
 
 ### Hertz
 
