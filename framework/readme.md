@@ -212,15 +212,20 @@ Application Layer provides APIs, eg ctx.Request.Header.Peek(key) -> API ctx.GetH
 func Middleware(params){
   // pre-handle logic
 
-  nextMiddleware() / bizLogic()
+  Next() // nextMiddleware() or bizLogic()
 
   // after-handle logic
 }
 ```
 
-2. Routing can register multiple middleware.
+2. Next()
 
-3. Guaranteed to increment index at all times.
+- Without Next(): Initialization logic AND does not need to be on the same call stack.
+- With Next(): Post-handle logic OR need to be in the same call stack
+
+3. Routing can register multiple middleware.
+
+4. Guaranteed to increment index at all times.
 
 ```go
 func (ctx *RequestContext) Next(){
@@ -232,7 +237,7 @@ func (ctx *RequestContext) Next(){
 }
 ```
 
-4. Exception handler
+5. Exception handler
 
 ```go
 func (ctx *RequestContext) Abort(){
@@ -241,6 +246,24 @@ func (ctx *RequestContext) Abort(){
 ```
 
 #### Routing Layer
+
+1. Trie
+
+<p align="center"><img src="../static/img/framework/http/routing_trie.png" alt="RPC Process" width="500"/></p>
+
+2. Method matching: Map + Method(string) + Tries + Header Node(\*node)
+
+3. Multi-handler: add a list for each handler
+  
+```go
+node struct {
+  prefix   string
+  parent   *node
+  children children
+  handlers app.HandlersChain
+  ...
+}
+```
 
 #### Protocol Layer
 
