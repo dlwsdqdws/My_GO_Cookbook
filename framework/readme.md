@@ -81,13 +81,9 @@ At this layer, an appropriate transport protocol is chosen to ensure reliable da
 
 1. Special Fields
 
-- Terminator
+- Terminator: eg, Message + \r\n + Message + \r\n
 
-eg: Message + \r\n + Message + \r\n
-
-- Variable Length
-
-eg: Length + Message Body + Length + Message Body
+- Variable Length: eg, Length + Message Body + Length + Message Body
 
 2. Process
 
@@ -202,11 +198,47 @@ h.Spin()
 
 ### Layers (From top to bottom)
 
-
+<p align="center"><img src="../static/img/framework/http/http_layers.png" alt="RPC Process" width="500"/></p>
 
 #### Application Layer
 
+Application Layer provides APIs, eg ctx.Request.Header.Peek(key) -> API ctx.GetHeader(key).
+
 #### Middleware Layer
+
+1. With pre-handle logic and post-handle logic.
+
+```go
+func Middleware(params){
+  // pre-handle logic
+
+  nextMiddleware() / bizLogic()
+
+  // after-handle logic
+}
+```
+
+2. Routing can register multiple middleware.
+
+3. Guaranteed to increment index at all times.
+
+```go
+func (ctx *RequestContext) Next(){
+  ctx.index++
+  for ctx.index < int8(len(ctx.handler)){
+    ctx.handlers[ctx.index]()
+    ctx.index++
+  }
+}
+```
+
+4. Exception handler
+
+```go
+func (ctx *RequestContext) Abort(){
+  ctx.index = IndexMax
+}
+```
 
 #### Routing Layer
 
