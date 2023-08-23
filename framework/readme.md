@@ -21,6 +21,12 @@
       - [Request](#request)
       - [Response](#response)
     - [Process](#process)
+    - [Layers (From top to bottom)](#layers-from-top-to-bottom-1)
+      - [Application Layer](#application-layer-1)
+      - [Middleware Layer](#middleware-layer)
+      - [Routing Layer](#routing-layer)
+      - [Protocol Layer](#protocol-layer)
+      - [Transport Layer](#transport-layer-1)
     - [Hertz](#hertz)
   - [Example](#example)
 
@@ -174,13 +180,13 @@ Note: Stability indicators are usually implemented through middleware, eg, WithT
 1. State Line
 
 - Protocol Version
-- State Code: 1XX = Information Requests, 2XX = Successful Request, 3XX = Redirects, 4XX = Client Errors, 5XX = Server Errors
+- State Code
 <p align="center"><img src="../static/img/framework/http/statecode.png" alt="RPC Process" width="500"/></p>
 
 - State Description
 
-2. Header Fields
-3. Response Body
+1. Header Fields
+2. Response Body
 
 ```go
 h := server.Default()
@@ -192,7 +198,21 @@ h.Spin()
 
 ### Process
 
-<p align="center"><img src="../static/img/framework/http/http_process.png alt="RPC Process" width="500"/></p>
+<p align="center"><img src="../static/img/framework/http/http_process.png" alt="RPC Process" width="500"/></p>
+
+### Layers (From top to bottom)
+
+
+
+#### Application Layer
+
+#### Middleware Layer
+
+#### Routing Layer
+
+#### Protocol Layer
+
+#### Transport Layer
 
 ### Hertz
 
