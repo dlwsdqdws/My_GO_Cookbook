@@ -77,6 +77,12 @@ Peek -> Magic Number (To know which protocol is used) -> Peek -> Payload Code (T
 
 #### Transport Layer
 
+This is the bottommost layer responsible for handling the details of data transmission over the network, such as packet segmentation, sending, and receiving. It provides the underlying network connection and communication mechanisms. Common protocols at this layer include TCP (Transmission Control Protocol) and UDP (User Datagram Protocol).
+
+<p align="center"><img src="../static/img/framework/rpc/Transport_Layer.png" alt="RPC Process" width="500"/></p>
+
+<p align="center"><img src="../static/img/framework/rpc/socket_api.png" alt="RPC Process" width="500"/></p>
+
 ### Kitex
 
 - Turn to [Kitex](/framework/KITEX/)
