@@ -6,7 +6,10 @@
   - [Dependency Management](#dependency-management)
   - [Test](#test)
   - [Code Optimization](#code-optimization)
+  - [Database](#database)
+  - [Network](#network)
   - [Framework](#framework)
+  - [Backend Development](#backend-development)
   - [Useful Tools](#useful-tools)
   - [Acknowledgements](#acknowledgements)
 
@@ -32,9 +35,21 @@
 
 - Turn to [Code Optimization](/optimization/)
 
+## Database
+
+- Turn to [DataBase](/database/)
+
+## Network
+
+- Turn to [Network](/network/)
+
 ## Framework
 
 - Turn to [Framework](/framework/)
+
+## Backend Development
+
+- Turn to [Backend Development](/development/)
 
 ## Useful Tools
 
