@@ -27,7 +27,7 @@
 
 - Remote Procedure Call(RPC) is a software communication protocol that one program can use to request a service from a program located in another computer on a network without having to understand the network's details.
 
-<p align="center"><img src="../static/img/framework/rpc/rpc_encode.png" alt="RPC Process" width="500"/></p>
+<p align="center"><img src="../static/img/framework/rpc/rpc.png" alt="RPC Process" width="500"/></p>
 
 - RPC Process:
 
@@ -41,7 +41,7 @@ In the application layer, client programs request services by invoking functions
 
 #### Encoding Layer
 
-- The encoding layer is responsible for converting function calls, parameters, and results into formats suitable for transmission over the network, as well as converting received data back into the format required for local invocation. This layer involves data serialization and deserialization to ensure that data can be properly parsed and processed during network transmission.
+The encoding layer is responsible for converting function calls, parameters, and results into formats suitable for transmission over the network, as well as converting received data back into the format required for local invocation. This layer involves data serialization and deserialization to ensure that data can be properly parsed and processed during network transmission.
 
 <p align="center"><img src="../static/img/framework/rpc/rpc_encode.png" alt="RPC Process" width="500"/></p>
 
@@ -58,6 +58,22 @@ struct Person{
 <p align="center"><img src="../static/img/framework/rpc/tlv_example.png" alt="RPC Process" width="500"/></p>
 
 #### Transport Protocol Layer
+
+At this layer, an appropriate transport protocol is chosen to ensure reliable data transmission, including error detection and recovery mechanisms. Common transport protocols include HTTP (Hypertext Transfer Protocol) and specific RPC protocols like gRPC.
+
+<p align="center"><img src="../static/img/framework/rpc/tpl_example.png" alt="RPC Process" width="500"/></p>
+
+- Terminator
+
+eg: Message + \r\n + Message + \r\n
+
+- Variable Length
+
+eg: Length + Message Body + Length + Message Body
+
+- Process
+
+Peek -> Magic Number (To know which protocol is used) -> Peek -> Payload Code (To know encode method) -> Peek -> Payload
 
 #### Transport Layer
 
