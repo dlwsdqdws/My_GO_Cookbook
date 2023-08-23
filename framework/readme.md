@@ -102,6 +102,21 @@ Note: Stability indicators are usually implemented through middleware, eg, WithT
 
 2. Usability
 
+3. Scalability
+
+<p align="center"><img src="../static/img/framework/rpc/middleware.png" alt="RPC Process" width="500"/></p>
+
+4. Observability
+
+- Log
+- Metric
+- Tracing
+
+5. Others
+
+- High Throughput: Connection Pool
+- Low Latency: Multiplexing
+
 ### Kitex
 
 - Turn to [Kitex](/framework/KITEX/)
