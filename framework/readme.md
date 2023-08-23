@@ -11,6 +11,10 @@
       - [Transport Layer](#transport-layer)
     - [Performance](#performance)
     - [Kitex](#kitex)
+      - [Scalability](#scalability)
+      - [Optimization](#optimization)
+        - [Network Library](#network-library)
+        - [Encoding](#encoding)
   - [HTTP](#http)
     - [Hertz](#hertz)
   - [Example](#example)
@@ -76,7 +80,7 @@ eg: Length + Message Body + Length + Message Body
 
 - Process
 
-Peek -> Magic Number (To know which protocol is used) -> Peek -> Payload Code (To know encode method) -> Peek -> Payload
+Peek -> Magic Number (To know which protocol is used) -> Peek -> PayloadCodeC (To know encode method) -> Peek -> Payload
 
 #### Transport Layer
 
@@ -120,6 +124,30 @@ Note: Stability indicators are usually implemented through middleware, eg, WithT
 ### Kitex
 
 - Turn to [Kitex](/framework/KITEX/)
+
+- Structure
+
+<p align="center"><img src="../static/img/framework/rpc/kitex.png" alt="RPC Process" width="500"/></p>
+
+#### Scalability
+
+1. Interaction: Png-Pong / Streaming / Oneway
+2. Codec: Thrift / Protobuf
+3. Application Layer Protocol: TTHeader / HTTP2 
+4. Transport Layer: TCP
+
+#### Optimization
+
+##### Network Library
+
+1. Scheduling: epoll_wait, Reuse goroutines.
+2. LinkBuffer: Nocopy Buffer.
+3. Pool: Object Pool, Memory Pool.
+
+##### Encoding
+
+1. Codegen: Pre-allocated memory, Inline operation, Thrift IDL encoding.
+2. JIT (Just-In-Time compilation): Frugal.
 
 ## HTTP
 
