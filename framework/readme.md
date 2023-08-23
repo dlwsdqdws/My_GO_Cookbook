@@ -27,6 +27,7 @@
       - [Routing Layer](#routing-layer)
       - [Protocol Layer](#protocol-layer)
       - [Transport Layer](#transport-layer-1)
+    - [Optimization](#optimization-1)
     - [Hertz](#hertz)
   - [Example](#example)
 
@@ -254,7 +255,7 @@ func (ctx *RequestContext) Abort(){
 2. Method matching: Map + Method(string) + Tries + Header Node(\*node)
 
 3. Multi-handler: add a list for each handler
-  
+
 ```go
 node struct {
   prefix   string
@@ -267,7 +268,72 @@ node struct {
 
 #### Protocol Layer
 
+1. Do not store Contexts inside a struct type, instead, pass a Context explicitly to each function that needs it. The Context should be the first parameter.
+
+2. Read and write data on the connection.
+
+```go
+type Server interface{
+  Serve(c context.Context, conn network.Conn) error
+}
+```
+
 #### Transport Layer
+
+1. Blocking I/O (BIO)
+
+```go
+// BIO
+go func() {
+  for {
+    conn, _ := listener.Accept()
+
+    go func(){
+      conn.Read(request)
+      handler
+      conn.Write(response)
+    }()
+  }
+}()
+
+// go net
+type Conn interface {
+  Read(b []byte) (n int, err error)  // if fail to read, blocked here
+  Write(b []byte) (n int, err error) // if fail to write, blocked here
+  ...
+}
+```
+
+2. New I/O (NIO)
+
+```go
+// NIO
+go func() {
+  for {
+    readableConns, _ := Monitor(conns) // read enough data
+    for conn := range readableConns {
+      go func(){
+        conn.Read(request)
+        handler
+        conn.Write(response)
+      }()
+    }
+  }
+}()
+
+// netpoll
+type Reader interface {
+  Peek(n int) ([]byte, error)
+  ...
+}
+
+type Writer interface {
+  Malloc(n int) (buf []byte, err error)
+  Flush() error
+}
+```
+
+### Optimization
 
 ### Hertz
 
