@@ -43,4 +43,4 @@
 
 ## Acknowledgements
 
-Many thanks to Kechun Wang, Zheng Zhao, Lei Zhang from ByteDance for their help.
+The main framework and content of this cookbook come from the ByteDance. Many thanks to Kechun Wang, Zheng Zhao, Lei Zhang.
