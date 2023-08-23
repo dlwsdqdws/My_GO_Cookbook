@@ -9,6 +9,7 @@
       - [Encoding Layer](#encoding-layer)
       - [Transport Protocol Layer](#transport-protocol-layer)
       - [Transport Layer](#transport-layer)
+    - [Performance](#performance)
     - [Kitex](#kitex)
   - [HTTP](#http)
     - [Hertz](#hertz)
@@ -63,11 +64,13 @@ At this layer, an appropriate transport protocol is chosen to ensure reliable da
 
 <p align="center"><img src="../static/img/framework/rpc/tpl_example.png" alt="RPC Process" width="500"/></p>
 
-- Terminator
+- Special Fields
+
+1. Terminator
 
 eg: Message + \r\n + Message + \r\n
 
-- Variable Length
+2. Variable Length
 
 eg: Length + Message Body + Length + Message Body
 
@@ -82,6 +85,22 @@ This is the bottommost layer responsible for handling the details of data transm
 <p align="center"><img src="../static/img/framework/rpc/Transport_Layer.png" alt="RPC Process" width="500"/></p>
 
 <p align="center"><img src="../static/img/framework/rpc/socket_api.png" alt="RPC Process" width="500"/></p>
+
+### Performance
+
+1. Stability
+
+- Timeout: Avoid wastes on unavailable nodes.
+- Rate Limiter: Protect the callee and prevent the server from being overwhelmed by heavy traffic.
+- Circuit Breaker: Protect the callee and prevent the problem of the server from affecting the entire link.
+- Request Success Rate: Load balancing and Retry.
+- Long Tail Request: Backup Request.
+
+<p align="center"><img src="../static/img/framework/rpc/backup_request.png" alt="RPC Process" width="500"/></p>
+
+Note: Stability indicators are usually implemented through middleware, eg, WithTimeout(), withRetry().
+
+2. Usability
 
 ### Kitex
 
