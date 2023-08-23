@@ -11,11 +11,16 @@
       - [Transport Layer](#transport-layer)
     - [Performance](#performance)
     - [Kitex](#kitex)
+      - [Structure](#structure)
       - [Scalability](#scalability)
       - [Optimization](#optimization)
         - [Network Library](#network-library)
         - [Encoding](#encoding)
   - [HTTP](#http)
+    - [Content](#content)
+      - [Request](#request)
+      - [Response](#response)
+    - [Process](#process)
     - [Hertz](#hertz)
   - [Example](#example)
 
@@ -125,7 +130,7 @@ Note: Stability indicators are usually implemented through middleware, eg, WithT
 
 - Turn to [Kitex](/framework/KITEX/)
 
-- Structure
+#### Structure
 
 <p align="center"><img src="../static/img/framework/rpc/kitex.png" alt="RPC Process" width="500"/></p>
 
@@ -133,7 +138,7 @@ Note: Stability indicators are usually implemented through middleware, eg, WithT
 
 1. Interaction: Png-Pong / Streaming / Oneway
 2. Codec: Thrift / Protobuf
-3. Application Layer Protocol: TTHeader / HTTP2 
+3. Application Layer Protocol: TTHeader / HTTP2
 4. Transport Layer: TCP
 
 #### Optimization
@@ -150,6 +155,42 @@ Note: Stability indicators are usually implemented through middleware, eg, WithT
 2. JIT (Just-In-Time compilation): Frugal.
 
 ## HTTP
+
+### Content
+
+#### Request
+
+1. Request Line
+
+- Methods: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH
+- URL
+- Protocol Version
+
+2. Header Fields
+3. Message Body
+
+#### Response
+
+1. State Line
+
+- Protocol Version
+- State Code: 1XX = Information Requests, 2XX = Successful Request, 3XX = Redirects, 4XX = Client Errors, 5XX = Server Errors
+<p align="center"><img src="../static/img/framework/http/statecode.png" alt="RPC Process" width="500"/></p>
+
+- State Description
+
+2. Header Fields
+3. Response Body
+
+```go
+h := server.Default()
+h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+	ctx.Data(200, "text/plain; charset=utf-8", []byte("OK"))
+})
+h.Spin()
+```
+
+### Process
 
 ### Hertz
 
