@@ -26,6 +26,8 @@
     - [Transaction Engine](#transaction-engine)
     - [Optimization](#optimization)
       - [High Traffic](#high-traffic)
+      - [Traffic Surge](#traffic-surge)
+      - [Stability and Reliability](#stability-and-reliability)
   - [Redis](#redis)
 
 ## Data Storage
@@ -242,12 +244,30 @@ The smallest management unit of data is the page.
 
 #### High Traffic
 
-Sharding:
+1. Sharding:
 
 - Horizontally split data.
 - Add Proxy Layer for sharding routing
 
-2.
+#### Traffic Surge
+
+1. Expansion: add more servers.
+
+<p align="center"><img src="../static/img/database/rdbms/expansion.png" alt="RPC Process" width="500"/></p>
+
+2. Proxy Connection Pool: Pre-cache a certain number of connections.
+
+#### Stability and Reliability
+
+1. 3AZ
+
+<p align="center"><img src="../static/img/database/rdbms/3az.png" alt="RPC Process" width="500"/></p>
+
+- Deployment in three computer rooms.
+- Realize read-write separation, sub-database sub-table and traffic scheduling through proxy.
+- Real-time monitoring alerts.
+
+2. HA Management
 
 ## Redis
 
