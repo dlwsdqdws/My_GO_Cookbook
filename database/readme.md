@@ -23,6 +23,7 @@
       - [Buffer Pool](#buffer-pool)
       - [Page](#page)
       - [B+ Tree](#b-tree)
+    - [Transaction Engine](#transaction-engine)
   - [Redis](#redis)
 
 ## Data Storage
@@ -214,12 +215,27 @@ Take MySQL InnoDB as an example.
 
 #### Page
 
+The smallest management unit of data is the page.
+
 <p align="center"><img src="../static/img/database/rdbms/page.png" alt="RPC Process" width="500"/></p>
 
 #### B+ Tree
 
 <p align="center"><img src="../static/img/database/rdbms/b+.png" alt="RPC Process" width="500"/></p>
 
+### Transaction Engine
+
+1. Atomicity & Undo Log: eg insert <-> delete
+
+2. Isolation & Lock
+
+- Read & Read: Share Lock & Share Lock
+- Write & Write: Exclusive Lock & Exclusive Lock
+
+3. Isolation & MVCC: R/W are non-blocking to each other.
+
+4. Durability & Redo Log: Write-ahead logging (WAL)
+
 ## Redis
 
-- Turn to [Redis](/database/redis/)
+- Turn to [Redis](/database/Redis/)
