@@ -18,7 +18,11 @@
     - [SQL Engine](#sql-engine)
       - [Parser](#parser)
       - [Optimizer](#optimizer)
-    - [Executor](#executor)
+      - [Executor](#executor)
+    - [Storage Engine](#storage-engine)
+      - [Buffer Pool](#buffer-pool)
+      - [Page](#page)
+      - [B+ Tree](#b-tree)
   - [Redis](#redis)
 
 ## Data Storage
@@ -166,11 +170,11 @@ Database is a kind of storage system but it has many advantages over traditional
 - Usually time is used as a measure of cost.
 - IO, CUP, NET, Memory can also be used as measures of cost.
 
-### Executor
+#### Executor
 
 1. Volcano Model
 
-<p align="center"><img src="../static/img/database/rdbms/volcano.png" alt="RPC Process" width="500"/></p>
+<p align="center"><img src="../static/img/database/rdbms/volcano.png" alt="RPC Process" height="500"/></p>
 
 - Each operator has input and output streams, and data flows from one operator to the next, ultimately generating the query result. The entire process mimics the flow of lava down a volcano, with data moving downward through layers of operations.
 
@@ -180,17 +184,41 @@ Database is a kind of storage system but it has many advantages over traditional
 
 2. Vectorized Model
 
-<p align="center"><img src="../static/img/database/rdbms/Vectorized.png" alt="RPC Process" width="500"/></p>
+<p align="center"><img src="../static/img/database/rdbms/Vectorized.png" alt="RPC Process" height="500"/></p>
 
 - Each operation is for a batch (N lines) of data: the number of function calls is decreased to 1/N.
 - Provide Single Instruction Multi Data (SIMD) to CPU.
 
 3. Compiled Execution
 
-<p align="center"><img src="../static/img/database/rdbms/compiled.png" alt="RPC Process" width="500"/></p>
+<p align="center"><img src="../static/img/database/rdbms/compiled.png" alt="RPC Process" height="500"/></p>
 
 - All operations are encapsulated into a function, and the cost of function calls is greatly reduced.
 - LLVM is used.
+
+### Storage Engine
+
+Take MySQL InnoDB as an example.
+
+<p align="center"><img src="../static/img/database/rdbms/innodb.png" alt="RPC Process" height="500"/></p>
+
+#### Buffer Pool
+
+- Find the block from the hash bucket corresponding to the HashMap<page_id, block*> through the page id.
+
+<p align="center"><img src="../static/img/database/rdbms/hashtable.png" alt="RPC Process" width="500"/></p>
+
+- Memory Erasure: LRU
+
+<p align="center"><img src="../static/img/database/rdbms/lru.png" alt="RPC Process" height="500"/></p>
+
+#### Page
+
+<p align="center"><img src="../static/img/database/rdbms/page.png" alt="RPC Process" width="500"/></p>
+
+#### B+ Tree
+
+<p align="center"><img src="../static/img/database/rdbms/b+.png" alt="RPC Process" width="500"/></p>
 
 ## Redis
 
