@@ -58,4 +58,4 @@
 
 ## Acknowledgements
 
-The main framework and content of this cookbook come from the ByteDance. Special thanks to Kechun Wang, Zheng Zhao, Lei Zhang, Xuewu Jiang, Xuran Yin.
+The main framework and content of this cookbook come from the ByteDance. Special thanks to Kechun Wang, Zheng Zhao, Lei Zhang, Xuewu Jiang, Xuran Yin, Haoxiang Ma.

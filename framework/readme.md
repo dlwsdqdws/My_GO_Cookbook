@@ -393,6 +393,8 @@ switch s.Key[0] | 0x20 {
 
 ## Microservices
 
+- Turn to [Microservices](/framework/Microservices/)
+
 ## Example
 
 - https://github.com/cloudwego/biz-demo/tree/main/easy_note
