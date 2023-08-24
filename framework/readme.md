@@ -28,6 +28,9 @@
       - [Protocol Layer](#protocol-layer)
       - [Transport Layer](#transport-layer-1)
     - [Optimization](#optimization-1)
+      - [For Network Library](#for-network-library)
+      - [For Protocol Headers](#for-protocol-headers)
+      - [Hotspot Resource Pool](#hotspot-resource-pool)
     - [Hertz](#hertz)
   - [Microservices](#microservices)
   - [Example](#example)
@@ -335,6 +338,54 @@ type Writer interface {
 ```
 
 ### Optimization
+
+#### For Network Library
+
+1. go net with bufio.
+
+```go
+type Reader interface {
+  Peek(n int) ([]byte, error)  // stop pointer
+  Discard(n int) (discarded int, err error)  // move-forward pointer
+  Release() error  // reclaim memory
+  Size() int
+  Read(b []byte) (l int, err error)
+  ...
+}
+
+type Writer interface {
+  Write(p []byte)
+  Size() int
+  Flush() error
+  ...
+}
+```
+
+2. netpoll with nocopy peek: Allocate a sufficiently large buffer and limit the buffer size
+
+<p align="center"><img src="../static/img/framework/http/netpoll.png" alt="RPC Process" width="500"/></p>
+
+#### For Protocol Headers
+
+1. To find the Terminator \r\n quickly, use SIMD (Single Instruction/Multiple Data).
+
+2. To Parsing Headers body quickly, firstly filter out keys that do not meet the requirements by initials, then parse the corresponding value to an independent field, finally use byte slices to manage corresponding header storage for easy reuse.
+
+```go
+switch s.Key[0] | 0x20 {
+  case 'h':  // Filter out keys that do not meet the requirements by initials
+  if utils.CaseInsensitiveCompare(s.Key, bytestr.StrHost) {
+    h.setHostBytes(s.Value) // Parse the corresponding value to an independent field
+    continue
+  }
+}
+```
+
+3. Header key normalization, eg aaa-bbb -> Aaa-Bbb.
+
+#### Hotspot Resource Pool
+
+<p align="center"><img src="../static/img/framework/http/hotspot.png" alt="RPC Process" width="500"/></p>
 
 ### Hertz
 
