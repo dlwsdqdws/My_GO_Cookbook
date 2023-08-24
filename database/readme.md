@@ -14,7 +14,10 @@
     - [Database](#database-1)
       - [Standalone Database](#standalone-database)
     - [New Tech](#new-tech)
-  - [RDBMS](#rdbms)
+  - [Relational Database Management System (RDBMS)](#relational-database-management-system-rdbms)
+    - [SQL Engine](#sql-engine)
+      - [Parser](#parser)
+      - [Optimizer](#optimizer)
   - [Redis](#redis)
 
 ## Data Storage
@@ -131,7 +134,37 @@ Database is a kind of storage system but it has many advantages over traditional
 4. Persistent Memory
 5. Programmable Switch
 
+## Relational Database Management System (RDBMS)
 
-## RDBMS
+<p align="center"><img src="../static/img/database/rdbms/sql.png" alt="RPC Process" width="500"/></p>
+
+### SQL Engine
+
+#### Parser
+
+1. Syntax Analysis: The parser checks whether the input SQL query adheres to the syntax rules of SQL. It identifies keywords, identifiers, operators, etc., and breaks down the query into a hierarchy of syntax elements.
+
+2. Generating Syntax Tree: Based on the syntax analysis, the parser constructs a syntax tree (parse tree). This tree represents the structure and relationships of the query and is used for further processing.
+
+3. Error Checking and Reporting: If the input SQL statement contains syntax errors, the parser detects them and generates corresponding error reports, indicating which parts are erroneous and possible corrective actions.
+
+4. Identifier Resolution: The parser resolves identifiers such as table names and column names into corresponding objects. This involves retrieving information from the database's metadata.
+
+5. Preprocessing: Some database systems support the use of pre-processors in SQL queries. The parser can perform preprocessing steps like macro expansion, variable substitution, etc.
+
+#### Optimizer
+
+1. Rule Base Optimizer (RBO)
+
+- Simplify query conditions.
+- Start from small table.
+- Scan priority: unique index -> normal index -> full table scan
+
+2. Cost Base Optimizer (CBO)
+
+- Usually time is used as a measure of cost.
+- IO, CUP, NET, Memory can also be used as measures of cost.
 
 ## Redis
+
+- Turn to [Redis](/database/redis/)
