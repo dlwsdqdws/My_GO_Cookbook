@@ -12,6 +12,7 @@
       - [Standalone Storage](#standalone-storage)
       - [Distributed Storage](#distributed-storage)
     - [Database](#database-1)
+      - [Standalone Database](#standalone-database)
   - [RDBMS](#rdbms)
   - [Redis](#redis)
 
@@ -101,9 +102,20 @@ Database is a kind of storage system but it has many advantages over traditional
 
 - Interfaces for objects.
 - Master/Standby Replication Model.
-- CRUSH algorithm: Hash + Weight + random draw
+- CRUSH algorithm: Hash + Weight + Random Draw
 
 ### Database
+
+#### Standalone Database
+
+1. Relational Database: Oracle, MySQL, PostgreSQL.
+
+- Components: Query Engine, Transaction Manager, Lock Manager, Storage Engine, Replication.
+- Data Structure: B-Tree, B+-Tree, LRU List.
+
+<p align="center"><img src="../static/img/database/products/tree.png" alt="RPC Process" width="500"/></p>
+
+2. Non-relational Database: MongoDB, Redis, Elasticsearch.
 
 ## RDBMS
 
