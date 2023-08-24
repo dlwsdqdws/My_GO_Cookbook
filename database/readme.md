@@ -24,6 +24,8 @@
       - [Page](#page)
       - [B+ Tree](#b-tree)
     - [Transaction Engine](#transaction-engine)
+    - [Optimization](#optimization)
+      - [High Traffic](#high-traffic)
   - [Redis](#redis)
 
 ## Data Storage
@@ -175,7 +177,7 @@ Database is a kind of storage system but it has many advantages over traditional
 
 1. Volcano Model
 
-<p align="center"><img src="../static/img/database/rdbms/volcano.png" alt="RPC Process" height="500"/></p>
+<p align="center"><img src="../static/img/database/rdbms/volcano.png" alt="RPC Process" height="300"/></p>
 
 - Each operator has input and output streams, and data flows from one operator to the next, ultimately generating the query result. The entire process mimics the flow of lava down a volcano, with data moving downward through layers of operations.
 
@@ -185,14 +187,14 @@ Database is a kind of storage system but it has many advantages over traditional
 
 2. Vectorized Model
 
-<p align="center"><img src="../static/img/database/rdbms/Vectorized.png" alt="RPC Process" height="500"/></p>
+<p align="center"><img src="../static/img/database/rdbms/Vectorized.png" alt="RPC Process" height="300"/></p>
 
 - Each operation is for a batch (N lines) of data: the number of function calls is decreased to 1/N.
 - Provide Single Instruction Multi Data (SIMD) to CPU.
 
 3. Compiled Execution
 
-<p align="center"><img src="../static/img/database/rdbms/compiled.png" alt="RPC Process" height="500"/></p>
+<p align="center"><img src="../static/img/database/rdbms/compiled.png" alt="RPC Process" height="300"/></p>
 
 - All operations are encapsulated into a function, and the cost of function calls is greatly reduced.
 - LLVM is used.
@@ -205,7 +207,7 @@ Take MySQL InnoDB as an example.
 
 #### Buffer Pool
 
-- Find the block from the hash bucket corresponding to the HashMap<page_id, block*> through the page id.
+- Find the block from the hash bucket corresponding to the HashMap<page_id, block\*> through the page id.
 
 <p align="center"><img src="../static/img/database/rdbms/hashtable.png" alt="RPC Process" width="500"/></p>
 
@@ -235,6 +237,17 @@ The smallest management unit of data is the page.
 3. Isolation & MVCC: R/W are non-blocking to each other.
 
 4. Durability & Redo Log: Write-ahead logging (WAL)
+
+### Optimization
+
+#### High Traffic
+
+Sharding:
+
+- Horizontally split data.
+- Add Proxy Layer for sharding routing
+
+2.
 
 ## Redis
 
