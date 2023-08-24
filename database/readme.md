@@ -7,6 +7,10 @@
       - [Relational Database](#relational-database)
       - [Non-relational Database](#non-relational-database)
     - [Database VS Traditional Storage System](#database-vs-traditional-storage-system)
+  - [Products](#products)
+    - [Storage](#storage)
+      - [Standalone Storage](#standalone-storage)
+    - [Database](#database-1)
   - [RDBMS](#rdbms)
   - [Redis](#redis)
 
@@ -62,7 +66,25 @@ Database is a kind of storage system but it has many advantages over traditional
 
 <p align="center"><img src="../static/img/database/storage/query.png" alt="RPC Process" width="500"/></p>
 
+## Products
 
+### Storage
+
+#### Standalone Storage
+
+1. File System 
+
+- Index Node: a data structure used to store metadata about a file or directory. Each file or directory in the file system has a corresponding inode entry, which contains various information about the file but does not include the actual content of the file. 
+- Directory Entry: a data structure refers to an entry within a directory that associates a file or directory name with its corresponding inode number. It serves as a mapping between the human-readable name of a file or directory and the internal data structure (inode) that contains metadata about that file or directory.
+
+2. Key-Value
+
+- Method: put(key, value) & get(key)
+- Data Structure: LSM-Tree (Sacrifice read performance in pursuit of write performance)
+  
+<p align="center"><img src="../static/img/database/products/lsmtree.png" alt="RPC Process" width="500"/></p>
+
+### Database
 
 ## RDBMS
 
