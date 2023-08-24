@@ -13,6 +13,7 @@
       - [Distributed Storage](#distributed-storage)
     - [Database](#database-1)
       - [Standalone Database](#standalone-database)
+    - [New Tech](#new-tech)
   - [RDBMS](#rdbms)
   - [Redis](#redis)
 
@@ -116,6 +117,20 @@ Database is a kind of storage system but it has many advantages over traditional
 <p align="center"><img src="../static/img/database/products/tree.png" alt="RPC Process" width="500"/></p>
 
 2. Non-relational Database: MongoDB, Redis, Elasticsearch.
+
+### New Tech
+
+1. Storage Performance Development Kit (SPDK)
+
+- Kernel Space -> User Space: Avoid the performance loss caused by syscall and directly access the disk from user space.
+- Interrupt -> Polling: The poller can be bound to the cpu core to reduce the context switch.
+- Lock-free queue.
+
+2. AI tech
+3. RDMA Network
+4. Persistent Memory
+5. Programmable Switch
+
 
 ## RDBMS
 
