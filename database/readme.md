@@ -10,6 +10,7 @@
   - [Products](#products)
     - [Storage](#storage)
       - [Standalone Storage](#standalone-storage)
+      - [Distributed Storage](#distributed-storage)
     - [Database](#database-1)
   - [RDBMS](#rdbms)
   - [Redis](#redis)
@@ -83,6 +84,24 @@ Database is a kind of storage system but it has many advantages over traditional
 - Data Structure: LSM-Tree (Sacrifice read performance in pursuit of write performance)
   
 <p align="center"><img src="../static/img/database/products/lsmtree.png" alt="RPC Process" width="500"/></p>
+
+#### Distributed Storage
+
+1. HDFS
+
+<p align="center"><img src="../static/img/database/products/hdfs.png" alt="RPC Process" width="500"/></p>
+
+- Support massive data storage
+- High fault tolerance.
+- Weak POSIX.
+
+2. Ceph
+
+<p align="center"><img src="../static/img/database/products/ceph.png" alt="RPC Process" width="500"/></p>
+
+- Interfaces for objects.
+- Master/Standby Replication Model.
+- CRUSH algorithm: Hash + Weight + random draw
 
 ### Database
 
