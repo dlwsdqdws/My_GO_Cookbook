@@ -18,6 +18,7 @@
     - [SQL Engine](#sql-engine)
       - [Parser](#parser)
       - [Optimizer](#optimizer)
+    - [Executor](#executor)
   - [Redis](#redis)
 
 ## Data Storage
@@ -78,16 +79,16 @@ Database is a kind of storage system but it has many advantages over traditional
 
 #### Standalone Storage
 
-1. File System 
+1. File System
 
-- Index Node: a data structure used to store metadata about a file or directory. Each file or directory in the file system has a corresponding inode entry, which contains various information about the file but does not include the actual content of the file. 
+- Index Node: a data structure used to store metadata about a file or directory. Each file or directory in the file system has a corresponding inode entry, which contains various information about the file but does not include the actual content of the file.
 - Directory Entry: a data structure refers to an entry within a directory that associates a file or directory name with its corresponding inode number. It serves as a mapping between the human-readable name of a file or directory and the internal data structure (inode) that contains metadata about that file or directory.
 
 2. Key-Value
 
 - Method: put(key, value) & get(key)
 - Data Structure: LSM-Tree (Sacrifice read performance in pursuit of write performance)
-  
+
 <p align="center"><img src="../static/img/database/products/lsmtree.png" alt="RPC Process" width="500"/></p>
 
 #### Distributed Storage
@@ -164,6 +165,32 @@ Database is a kind of storage system but it has many advantages over traditional
 
 - Usually time is used as a measure of cost.
 - IO, CUP, NET, Memory can also be used as measures of cost.
+
+### Executor
+
+1. Volcano Model
+
+<p align="center"><img src="../static/img/database/rdbms/volcano.png" alt="RPC Process" width="500"/></p>
+
+- Each operator has input and output streams, and data flows from one operator to the next, ultimately generating the query result. The entire process mimics the flow of lava down a volcano, with data moving downward through layers of operations.
+
+- The strength of the Volcano Model lies in its intuitive representation of the query execution process, aiding developers and optimizers in better understanding and optimizing query plans. By decomposing the query execution into multiple operators, the model also offers opportunities for query optimization, such as reordering operators to reduce computation or selecting more suitable join methods.
+
+- The disadvantage is that each calculation of a piece of data has multiple function calls, resulting in low cpu efficiency.
+
+2. Vectorized Model
+
+<p align="center"><img src="../static/img/database/rdbms/Vectorized.png" alt="RPC Process" width="500"/></p>
+
+- Each operation is for a batch (N lines) of data: the number of function calls is decreased to 1/N.
+- Provide Single Instruction Multi Data (SIMD) to CPU.
+
+3. Compiled Execution
+
+<p align="center"><img src="../static/img/database/rdbms/compiled.png" alt="RPC Process" width="500"/></p>
+
+- All operations are encapsulated into a function, and the cost of function calls is greatly reduced.
+- LLVM is used.
 
 ## Redis
 
