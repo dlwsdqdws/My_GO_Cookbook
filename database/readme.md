@@ -292,17 +292,22 @@ Compared with Hadoop Distributed File System (HDFS), Tinder Object Storage (TOS)
 
 ### Usage
 
-1. Create A Bucket.
+1. Create A Bucket
+   
 2. Service Logic
 
 - URL: `{bucket}.xxx.com/{object}`
 - CRUD
   | Method | Params | Return Value |
-  | :-----| ----: | ----: |
+  | :-----| :----: | ----: |
   | PUT | Bucket, Key, Content | Success/Fail |
   | GET | Bucket, Key | Content |
   | HEAD | Bucket, Key | MetaData |
   | DELETE | Bucket, Key | Success/Fail |
+
+3. MultiUpload: InitUpload, UploadPart, CompleteUpload
+
+4. ListPrefix
 
 ## Redis
 
