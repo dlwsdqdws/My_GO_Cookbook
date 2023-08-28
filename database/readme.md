@@ -28,6 +28,9 @@
       - [High Traffic](#high-traffic)
       - [Traffic Surge](#traffic-surge)
       - [Stability and Reliability](#stability-and-reliability)
+  - [Tinder Object Storage (TOS)](#tinder-object-storage-tos)
+    - [Advantage](#advantage)
+    - [Usage](#usage)
   - [Redis](#redis)
 
 ## Data Storage
@@ -268,6 +271,38 @@ The smallest management unit of data is the page.
 - Real-time monitoring alerts.
 
 2. HA Management
+
+## Tinder Object Storage (TOS)
+
+### Advantage
+
+Compared with Hadoop Distributed File System (HDFS), Tinder Object Storage (TOS) has many advantages:
+
+1. Support massive data.
+
+2. Easy to use
+
+- Provide RESTful HTTP API: GET/HEAD/PUT/DELETE
+- Cloud.
+- Accessible to videos and pictures.
+
+3. Cheap: capable of grading storage for hot and cold data.
+
+4. Applicable for static and immutable data.
+
+### Usage
+
+1. Create A Bucket.
+2. Service Logic
+
+- URL: `{bucket}.xxx.com/{object}`
+- CRUD
+  | Method | Params | Return Value |
+  | :-----| ----: | ----: |
+  | PUT | Bucket, Key, Content | Success/Fail |
+  | GET | Bucket, Key | Content |
+  | HEAD | Bucket, Key | MetaData |
+  | DELETE | Bucket, Key | Success/Fail |
 
 ## Redis
 

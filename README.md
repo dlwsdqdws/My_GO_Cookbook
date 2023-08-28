@@ -37,7 +37,7 @@
 
 ## Database
 
-- Turn to [DataBase](/database/)
+- Turn to [Database](/database/)
 
 ## Network
 
@@ -58,4 +58,5 @@
 
 ## Acknowledgements
 
-The main framework and content of this cookbook come from the ByteDance. Special thanks to Kechun Wang, Zheng Zhao, Lei Zhang, Xuewu Jiang, Xuran Yin, Haoxiang Ma, Yang Yang.
+The main framework and content of this cookbook come from the ByteDance. Special thanks to Kechun Wang, Zheng Zhao, Lei Zhang, Xuewu Jiang, Xuran Yin, Haoxiang Ma, Yang Yang, Sibin Luo.
+
