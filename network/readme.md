@@ -7,6 +7,10 @@
     - [Internet Protocol (IP)](#internet-protocol-ip)
     - [Network Address Translation (NAT)](#network-address-translation-nat)
   - [Network Transmission](#network-transmission)
+    - [Open Systems Interconnection (OSI)](#open-systems-interconnection-osi)
+    - [Domain Name System (DNS)](#domain-name-system-dns)
+    - [TCP Connection](#tcp-connection)
+      - [Three-way Handshake](#three-way-handshake)
 
 ## Network Access
 
@@ -73,3 +77,51 @@ func send_one_pkt(){
 
 ## Network Transmission
 
+### Open Systems Interconnection (OSI)
+
+<p align="center"><img src="../static/img/network/transmission/osi.png" alt="RPC Process" width="500"/></p>
+
+### Domain Name System (DNS)
+
+<p align="center"><img src="../static/img/network/transmission/dns.png" alt="RPC Process" width="500"/></p>
+
+1. The DNS is responsible for translating human-readable domain names (like www.example.com) into computer-understandable IP addresses (such as 192.0.2.1). This translation allows us to use easily memorable domain names to access various resources on the internet without needing to remember complex numeric IP addresses.
+
+2. The main functions of DNS include:
+
+- Domain Name Resolution: Converting the domain name entered by a user into the corresponding IP address. When you type a domain name in a web browser, DNS helps you find the associated IP address so that the browser can connect to the correct server.
+
+- Domain Name Forwarding: DNS servers can forward requests to other DNS servers to obtain the information needed for domain name resolution. This aids in information retrieval in distributed systems.
+
+- Domain Name Caching: To enhance performance and reduce network traffic, DNS servers cache resolved domain name-to-IP address mappings. This way, when multiple users request the same domain name, DNS can return the result directly from the cache without needing to perform resolution every time.
+
+- Reverse Resolution: Converting an IP address into a domain name. This is useful in certain cases, such as determining the domain name associated with a given IP address.
+
+3. Take www.example.com as an example:
+
+- Local DNS Query: Your computer or router's local DNS server is the first to be queried. If this local server already has the IP address of "www.example.com" cached, it provides the result directly.
+
+- Local DNS Cache Miss: If the local server doesn't have the IP address cached, it sends a query to your Internet Service Provider's (ISP) DNS server.
+
+- Root Domain Server Query: The ISP's DNS server queries the root domain servers, asking for the IP address of the ".com" domain server.
+
+- .com Domain Server Query: The root domain servers direct the ISP's DNS server to query the ".com" domain server for the IP address of the "example.com" domain server.
+
+- example.com Domain Server Query: The ".com" domain server tells the ISP's DNS server the IP address of the "example.com" domain server.
+
+- Authoritative Server Query: The ISP's DNS server queries the "example.com" domain server for the IP address of "www.example.com."
+
+- example.com Domain Server Response: The authoritative domain server for "example.com" responds with the actual IP address of "www.example.com" to the ISP's DNS server.
+
+- Final Resolution: The ISP's DNS server returns the obtained IP address to your local DNS server, and finally, your local DNS server provides the IP address to your computer. This enables your browser to connect to the server associated with "www.example.com."
+
+4. DNS operates based on UDP (User Datagram Protocol).
+
+- Efficiency: UDP is connectionless, which means there is no need to establish a connection before sending data.
+- Lightweight: UDP headers are smaller, consuming less bandwidth. This is crucial for domain name resolution, as there are numerous DNS queries on the internet.
+- Stateless: UDP being connectionless, it doesn't maintain connection state information. This allows DNS servers to handle multiple query requests simultaneously without managing complex connection states.
+- DNS implements its own mechanisms at the application layer, like retry mechanisms and timeout mechanisms, to ensure query accuracy and reliability.
+
+### TCP Connection
+
+#### Three-way Handshake
