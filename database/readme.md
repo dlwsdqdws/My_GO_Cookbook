@@ -31,6 +31,7 @@
   - [Tinder Object Storage (TOS)](#tinder-object-storage-tos)
     - [Advantage](#advantage)
     - [Usage](#usage)
+    - [Optimization](#optimization-1)
   - [Redis](#redis)
 
 ## Data Storage
@@ -293,13 +294,12 @@ Compared with Hadoop Distributed File System (HDFS), Tinder Object Storage (TOS)
 ### Usage
 
 1. Create A Bucket
-   
 2. Service Logic
 
 - URL: `{bucket}.xxx.com/{object}`
 - CRUD
   | Method | Params | Return Value |
-  | :-----| :----: | ----: |
+  | :-----: | :----: | :----: |
   | PUT | Bucket, Key, Content | Success/Fail |
   | GET | Bucket, Key | Content |
   | HEAD | Bucket, Key | MetaData |
@@ -308,6 +308,20 @@ Compared with Hadoop Distributed File System (HDFS), Tinder Object Storage (TOS)
 3. MultiUpload: InitUpload, UploadPart, CompleteUpload
 
 4. ListPrefix
+
+### Optimization
+
+1. Scalability: Partition Logic (Hash + Range)
+
+<p align="center"><img src="../static/img/database/tos/partition.png" alt="RPC Process" width="500"/></p>
+
+2. Sustainability: Replication
+
+<p align="center"><img src="../static/img/database/tos/replication.png" alt="RPC Process" width="500"/></p>
+
+3. Cut Costs: Erasure Coding 
+
+<p align="center"><img src="../static/img/database/tos/erasure.png" alt="RPC Process" width="500"/></p>
 
 ## Redis
 
