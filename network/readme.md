@@ -11,6 +11,7 @@
     - [Domain Name System (DNS)](#domain-name-system-dns)
     - [TCP Connection](#tcp-connection)
       - [Three-way Handshake](#three-way-handshake)
+      - [TCP Transmission](#tcp-transmission)
 
 ## Network Access
 
@@ -125,3 +126,63 @@ func send_one_pkt(){
 ### TCP Connection
 
 #### Three-way Handshake
+
+<p align="center"><img src="../static/img/network/transmission/handshake.png" alt="RPC Process" width="500"/></p>
+
+1. Step 1 - SYN (Synchronize) from Client: The client initiates the handshake by sending a TCP packet with the SYN flag (SYN packet) set to the server. This packet indicates that the client wants to establish a connection. The client also selects an initial sequence number (ISN) that will be used for the data segments.
+
+2. Step 2 - SYN-ACK (Synchronize-Acknowledge) from Server: Upon receiving the SYN packet, the server responds with a TCP packet containing both the SYN and ACK (acknowledge) flags set (SYN-ACK packet). The server acknowledges the client's request and sends its own initial sequence number (ISN) for data segments.
+
+3. Step 3 - ACK from Client: Finally, the client responds with an ACK packet. This packet acknowledges the server's initial sequence number (ISN) and confirms the connection establishment. The data transmission can now begin.
+
+#### TCP Transmission
+
+1. Seq & Ack
+
+- Sequence Number: The Sequence Number is a field within the TCP segment that identifies each byte in the byte stream sent by the sender. It indicates the position of the next byte the sender plans to transmit. As data is sent, each byte is assigned a sequence number to ensure proper reassembly at the receiving end.
+
+- Acknowledgment Number: The Acknowledgment Number is another field within the TCP segment, representing the sequence number the receiver of the data expects to receive next. In TCP communication, the receiver informs the sender of the sequence number it expects to receive after a specific byte. The acknowledgment number indicates the next data byte the receiver is expecting.
+
+<p align="center"><img src="../static/img/network/transmission/tcp.png" alt="RPC Process" width="500"/></p>
+
+2. TCP State Machine
+
+<p align="center"><img src="../static/img/network/transmission/tcp-state-machine.png" alt="RPC Process" width="500"/></p>
+
+- Closed: This is the initial state of a TCP connection. No connection exists, and neither side is prepared for data exchange.
+
+- Listen: The server is listening for incoming connection requests from clients.
+
+- Syn Sent: The client initiates a connection by sending a SYN packet to the server, indicating its intent to establish a connection.
+
+- Syn Received: The server responds to the client's SYN packet with its own SYN packet and acknowledges the client's SYN (SYN-ACK). The server is now ready to receive data.
+
+- Established: Both sides have exchanged SYN packets, and the connection is established. Data can now be exchanged bidirectionally.
+
+- Fin Wait 1: The active party (either client or server) initiates the termination by sending a FIN packet to signal that it has finished sending data.
+
+- Closing: Both sides have initiated termination. The active closer enters the Closing state, waiting for the peer's acknowledgment of its FIN.
+
+- Time Wait: The side that initiates the termination enters the Time Wait state after sending a FIN. This state is to ensure that any delayed packets related to the closed connection are not confused with new connections.
+
+- Last Ack: The passive closer (the side that received the FIN first) transitions to this state after acknowledging the peer's FIN.
+
+- Closed (again): After both sides have exchanged FIN packets and acknowledged each other's FINs, the connection is fully closed, and both sides return to the Closed state.
+
+3. Timewait: TIME_WAIT state occurs after a TCP connection is closed, where the active closer (the side that sent the FIN) waits for a period of time to ensure that all packets associated with the connection have been properly processed by the passive closer (the side that received the FIN).
+
+4. Lost packets:
+
+- Sequence Numbers and Acknowledgments: TCP assigns sequence numbers to every byte of data it sends. The receiver acknowledges the receipt of these bytes by sending back an acknowledgment (ACK) with the next expected sequence number. If a sender doesn't receive an acknowledgment for a certain packet, it assumes the packet was lost and retransmits it.
+
+- Retransmission: If a sender doesn't receive an acknowledgment for a packet within a certain timeout period, it assumes the packet was lost and retransmits it. The receiver, upon receiving a duplicate packet, discards the duplicate and acknowledges the original packet it had received.
+
+- Selective Retransmission: TCP doesn't retransmit all lost packets; instead, it uses a selective retransmission mechanism. If a receiver detects a gap in the sequence numbers (indicating a lost packet), it requests the sender to retransmit only the missing packets, not the entire sequence of data.
+
+- Sliding Window: TCP uses a sliding window mechanism to manage the flow of data. This window indicates how much data can be sent without waiting for an acknowledgment. If an acknowledgment is not received for a window of data, the sender retransmits the unacknowledged portion.
+
+- Timeout Management: TCP employs dynamic timeout mechanisms. The timeout duration is adjusted based on network conditions. If acknowledgments are not received within the expected timeout window, the sender assumes packet loss and initiates retransmission.
+
+- Fast Retransmit and Recovery: TCP's fast retransmit and recovery mechanisms allow the sender to retransmit lost packets without waiting for the timeout to expire. If a sender receives multiple duplicate acknowledgments (indicating the receiver expects a missing packet), it quickly retransmits the suspected lost packet.
+
+- Congestion Control: TCP's congestion control mechanisms help prevent network congestion that can lead to packet loss. If a sender detects congestion (e.g., due to a high volume of lost packets), it reduces its sending rate to alleviate network congestion.
