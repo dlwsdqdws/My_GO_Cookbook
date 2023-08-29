@@ -15,6 +15,9 @@
     - [HTTP](#http)
       - [HTTP1.1](#http11)
       - [HTTPS](#https)
+  - [Network Optimization](#network-optimization)
+    - [Acceleration](#acceleration)
+    - [Stability](#stability)
 
 ## Network Access
 
@@ -221,3 +224,32 @@ Optimizations on HTTP1.1:
 #### HTTPS
 
 Hypertext Transfer Protocol Secure (HTTPS) uses SSL (Secure Sockets Layer) and its successor TLS (Transport Layer Security) to achieve encryption and security.
+
+<p align="center"><img src="../static/img/network/transmission/https.png" alt="RPC Process" width="500"/></p>
+
+## Network Optimization
+
+### Acceleration
+
+1. Multiplexing Stream : HTTP2.0
+2. QUIC : HTTP3.0
+3. Access within the same carrier.
+4. Content Delivery Network (CDN)
+5. Dynamic API Path Optimization
+
+### Stability
+
+1. Network Resilience
+
+- Dedicated Line First
+- Eliminating Unavailable Data Centers
+- Cloud Server
+- Cache
+
+2. Troubleshooting
+
+- dig
+- ping/telnet/nmap
+- Traceroute
+- iptabels
+- tcpdump
