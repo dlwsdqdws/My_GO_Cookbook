@@ -12,8 +12,9 @@
     - [TCP Connection](#tcp-connection)
       - [Three-way Handshake](#three-way-handshake)
       - [TCP Transmission](#tcp-transmission)
-    - [HTTP/HTTP1.1](#httphttp11)
-    - [HTTPS](#https)
+    - [HTTP](#http)
+      - [HTTP1.1](#http11)
+      - [HTTPS](#https)
 
 ## Network Access
 
@@ -189,11 +190,13 @@ func send_one_pkt(){
 
 - Congestion Control: TCP's congestion control mechanisms help prevent network congestion that can lead to packet loss. If a sender detects congestion (e.g., due to a high volume of lost packets), it reduces its sending rate to alleviate network congestion.
 
-### HTTP/HTTP1.1
+### HTTP
 
-1. Hypertext Transfer Protocol (HTTP) relies on the underlying TCP protocol to achieve data transmission. The HTTP protocol defines the rules and formats for communication over TCP connections, making it more convenient for developers to build network-based applications.
+Hypertext Transfer Protocol (HTTP) relies on the underlying TCP protocol to achieve data transmission. The HTTP protocol defines the rules and formats for communication over TCP connections, making it more convenient for developers to build network-based applications.
 
-2. Optimizations on HTTP1.1:
+#### HTTP1.1
+
+Optimizations on HTTP1.1:
 
 - Persistent Connections: In HTTP/1.0, each HTTP request/response pair required a separate TCP connection. HTTP/1.1 introduced persistent connections, allowing multiple requests and responses to be sent and received over the same TCP connection. This reduces the overhead of establishing and tearing down connections for each request.
 
@@ -215,4 +218,6 @@ func send_one_pkt(){
 
 - Header Compression: Although not a built-in feature of HTTP/1.1, some implementations use header compression techniques like "gzip" to reduce the size of headers and improve data transfer efficiency.
 
-### HTTPS
+#### HTTPS
+
+Hypertext Transfer Protocol Secure (HTTPS) uses SSL (Secure Sockets Layer) and its successor TLS (Transport Layer Security) to achieve encryption and security.
