@@ -6,6 +6,7 @@
     - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
     - [Internet Protocol (IP)](#internet-protocol-ip)
     - [Network Address Translation (NAT)](#network-address-translation-nat)
+  - [Network Transmission](#network-transmission)
 
 ## Network Access
 
@@ -37,11 +38,8 @@ func send_one_pkt(){
 <p align="center"><img src="../static/img/network/access/arp_process.jpg" alt="RPC Process" width="500"/></p>
 
 1. ARP is to look up the mac address of the next hop.
-   
 2. Only devices within the same network segment can send ARP.
-   
 3. ARP requests are broadcasted, while ARP replies are unicast.
-   
 4. Gratuitous ARP: an ARP message in computer networking where a host sends an ARP request with its own IP address as the target IP address.
 
 - Address Conflict Detection: A device can send a gratuitous ARP to check if another device is using its IP address. If it receives a response, it indicates an IP address conflict.
@@ -60,3 +58,18 @@ func send_one_pkt(){
 2. IPV4 / IPV6
 
 ### Network Address Translation (NAT)
+
+<p align="center"><img src="../static/img/network/access/nat.png" alt="RPC Process" width="500"/></p>
+
+1. NAT works by mapping private IP addresses within the local network to one or more public IP addresses. This allows multiple devices in the local network to communicate with the external internet using a single public IP address. When a packet is sent from a device within the local network to the external network, NAT replaces the source IP address with the public IP address of the NAT device. When response packets return, NAT uses its mapping table to convert the destination IP address back to the private IP address of the source device.
+
+2. Different types:
+
+- Static NAT: One-to-one mapping, where a private IP address is mapped to a single public IP address.
+- Dynamic NAT: One-to-many mapping, where multiple private IP addresses are mapped to a pool of public IP addresses, but the mappings are temporary and may change with each use.
+- PAT (Port Address Translation): One-to-many mapping that uses different port numbers to distinguish between different internal devices, in addition to mapping private IP addresses to a public IP address.
+
+3. NAT allows multiple devices to share the same public IP address under limited availability of public IP address resources, thereby enhancing the utilization of IPv4 addresses. However, NAT can introduce certain networking issues, such as not being suitable for certain applications and protocols, and potentially adding complexity to the network.
+
+## Network Transmission
+
