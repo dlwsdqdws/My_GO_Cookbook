@@ -5,6 +5,7 @@
     - [Routing](#routing)
     - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
     - [Internet Protocol (IP)](#internet-protocol-ip)
+    - [Network Address Translation (NAT)](#network-address-translation-nat)
 
 ## Network Access
 
@@ -51,3 +52,11 @@ func send_one_pkt(){
 5. ARP Proxy: a mechanism designed to solve ARP resolution challenges when communication spans different subnets or networks. It acts as a proxy for handling ARP requests and replies, enabling communication across subnet boundaries.
 
 ### Internet Protocol (IP)
+
+<p align="center"><img src="../static/img/network/access/ip.png" alt="RPC Process" width="500"/></p>
+
+1. The IP protocol is used to unify different types of Layer 2 network protocols.
+
+2. IPV4 / IPV6
+
+### Network Address Translation (NAT)
