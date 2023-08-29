@@ -12,6 +12,8 @@
     - [TCP Connection](#tcp-connection)
       - [Three-way Handshake](#three-way-handshake)
       - [TCP Transmission](#tcp-transmission)
+    - [HTTP/HTTP1.1](#httphttp11)
+    - [HTTPS](#https)
 
 ## Network Access
 
@@ -186,3 +188,31 @@ func send_one_pkt(){
 - Fast Retransmit and Recovery: TCP's fast retransmit and recovery mechanisms allow the sender to retransmit lost packets without waiting for the timeout to expire. If a sender receives multiple duplicate acknowledgments (indicating the receiver expects a missing packet), it quickly retransmits the suspected lost packet.
 
 - Congestion Control: TCP's congestion control mechanisms help prevent network congestion that can lead to packet loss. If a sender detects congestion (e.g., due to a high volume of lost packets), it reduces its sending rate to alleviate network congestion.
+
+### HTTP/HTTP1.1
+
+1. Hypertext Transfer Protocol (HTTP) relies on the underlying TCP protocol to achieve data transmission. The HTTP protocol defines the rules and formats for communication over TCP connections, making it more convenient for developers to build network-based applications.
+
+2. Optimizations on HTTP1.1:
+
+- Persistent Connections: In HTTP/1.0, each HTTP request/response pair required a separate TCP connection. HTTP/1.1 introduced persistent connections, allowing multiple requests and responses to be sent and received over the same TCP connection. This reduces the overhead of establishing and tearing down connections for each request.
+
+- Pipeline Requests: HTTP/1.1 supports pipelining, which allows the client to send multiple requests to the server without waiting for individual responses. This helps in utilizing the full capacity of the TCP connection and reducing latency.
+
+- Host Header: HTTP/1.1 mandates the use of the "Host" header in requests. This header allows multiple websites to be hosted on the same IP address and port, as the server can differentiate between them based on the Host header.
+
+- Chunked Transfer Encoding: HTTP/1.1 introduced the chunked transfer encoding mechanism. This allows the server to send the response in smaller chunks, which can be beneficial for streaming or large responses.
+
+- Content Negotiation: HTTP/1.1 improved content negotiation, allowing clients and servers to negotiate the format and language of the response content. This enables better customization of content for different devices and user preferences.
+
+- Caching Improvements: HTTP/1.1 includes enhanced caching mechanisms, such as the "Cache-Control" header, which gives more control over caching behavior. This helps in reducing unnecessary data transfer and improving performance.
+
+- Range Requests: HTTP/1.1 introduced support for range requests, allowing clients to request only a portion of a resource instead of the entire resource. This is useful for resuming interrupted downloads and optimizing bandwidth usage.
+
+- Connection Management: HTTP/1.1 includes the "Connection" header, which allows clients and servers to specify whether a connection should be kept open after a response is sent. This gives more control over connection management.
+
+- Keep-Alive Mechanism: HTTP/1.1's keep-alive mechanism allows a persistent connection to remain open for a certain period of time after a response is received. This reduces the need to reopen connections for subsequent requests.
+
+- Header Compression: Although not a built-in feature of HTTP/1.1, some implementations use header compression techniques like "gzip" to reduce the size of headers and improve data transfer efficiency.
+
+### HTTPS
